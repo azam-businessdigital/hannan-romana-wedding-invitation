@@ -21,7 +21,7 @@ interface FinalEnvelopeProps {
  * Features:
  * - Left flap: "Abdul Hannan" with royal groom insignia
  * - Right flap: "Romana Bano" with royal bride insignia
- * - Central Royal Rajput Wax Seal: "TAP TO OPEN CARD"
+ * - Central Royal Rajput Wax Seal: "OPEN CARD"
  * - When tapped, the 3D card unfolds to reveal the couple's full royal invitation
  * - Re-foldable so guests can experience the interactive opening again and again!
  */
@@ -97,9 +97,6 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
           </h2>
           <PalaceLantern size="sm" className="scale-[0.58] opacity-90" />
         </div>
-        <span className="font-serif-luxury italic text-xs sm:text-[13px] text-[#3A2118]">
-          {isOpen ? 'Fold card or share your heartfelt congratulations' : 'Tap the wax seal in the center to open the card'}
-        </span>
       </motion.div>
 
       {/* CENTER STAGE: 3D FOLDING WEDDING CARD */}
@@ -369,12 +366,6 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
                   </div>
                 </div>
 
-                {/* Subtitle pill badge */}
-                <div className="mt-2 px-2.5 py-0.5 rounded-full bg-[#F5EBDD]/95 border border-[#C9A24A] shadow-xs">
-                  <span className="font-cinzel text-[7px] sm:text-[7.5px] tracking-[0.2em] uppercase text-[#641C24] font-bold whitespace-nowrap">
-                    TAP TO OPEN
-                  </span>
-                </div>
               </motion.button>
             )}
           </AnimatePresence>

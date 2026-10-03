@@ -148,11 +148,8 @@ export const CoupleSection: React.FC<CoupleSectionProps> = ({ data }) => {
         className="relative z-10 w-full max-w-sm pb-8 sm:pb-9 flex flex-col items-center"
       >
         <FloralDivider className="w-40 sm:w-48 text-[#C9A24A] opacity-75 mb-1" />
-        <div className="flex items-center justify-between w-48 sm:w-56">
+        <div className="flex items-center justify-center gap-12">
           <RajasthaniElephant className="w-10 h-7 text-[#C9A24A] opacity-80" />
-          <span className="font-cinzel text-[8px] tracking-[0.25em] text-[#C9A24A] uppercase font-semibold">
-            PADHARO SA
-          </span>
           <RajasthaniElephant className="w-10 h-7 text-[#C9A24A] opacity-80" mirrored />
         </div>
       </motion.div>

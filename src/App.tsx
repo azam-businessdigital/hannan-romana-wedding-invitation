@@ -10,6 +10,7 @@ import { ReceptionDetailOnly } from './components/ReceptionDetailOnly';
 import { VenueSection } from './components/VenueSection';
 import { FamilySection } from './components/FamilySection';
 import { FinalEnvelope } from './components/FinalEnvelope';
+import { ThankYou } from './components/ThankYou';
 import { MusicControl } from './components/MusicControl';
 import { ShareButton } from './components/ShareButton';
 import { PetalCanvas } from './components/PetalCanvas';
@@ -24,7 +25,7 @@ export default function App() {
   const [petalIntensity, setPetalIntensity] = useState<'gentle' | 'celebratory'>('gentle');
   const touchStartY = useRef<number | null>(null);
   
-  // 8 Royal Rajasthani Invitation Sections in user-specified order:
+  // 9 Royal Rajasthani Invitation Sections in user-specified order:
   // 1. First slide only initials
   // 2. Grandparents invite for wedding of beloved grandson + details (names in 2 lines, final invitation)
   // 3. Timer (Countdown)
@@ -32,8 +33,9 @@ export default function App() {
   // 5. Reception details only
   // 6. Locations (Maps)
   // 7. RSVP
-  // 8. Card (names hidden, left Abdul Hannan, right Romana Bano; open reveals Abdul Hannan & Dr. Romana Bano)
-  const totalPages = 8;
+  // 8. Interactive wedding card
+  // 9. Thank You
+  const totalPages = 9;
 
   const pageTitles = [
     "H & R",
@@ -43,7 +45,8 @@ export default function App() {
     "Dawat-e-Walima",
     "Ceremony Locations",
     "RSVP & Family",
-    "Wedding Card"
+    "Wedding Card",
+    "Thank You"
   ];
 
   // Transition to specific page
@@ -297,6 +300,9 @@ export default function App() {
                 }}
               />
             )}
+
+            {/* Slide 9: Thank You */}
+            {currentPage === 8 && <ThankYou data={invitationData} />}
           </motion.div>
         </AnimatePresence>
 
