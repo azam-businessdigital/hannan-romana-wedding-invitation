@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, Phone, MessageCircle, Navigation, Share2, Sparkles, Heart } from 'lucide-react';
 import { InvitationConfig } from '../types';
-import { FloralCorner, FloralDivider, BismillahCalligraphy, RajasthaniElephant, WaxSeal } from './Ornaments';
+import { FloralCorner, FloralDivider, BismillahCalligraphy, RajasthaniElephant, PalaceLantern } from './Ornaments';
 import { getGoogleCalendarUrl } from '../utils/calendar';
 
 interface FinalEnvelopeProps {
@@ -90,9 +90,13 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
           <Sparkles className="w-3 h-3 text-[#C9A24A]" />
         </div>
 
-        <h2 className="font-cinzel text-base sm:text-lg md:text-xl font-bold tracking-[0.16em] uppercase text-[#3A2118] mt-0.5">
-          WEDDING CARD
-        </h2>
+        <div className="mt-0.5 flex items-center justify-center gap-2">
+          <PalaceLantern size="sm" className="scale-[0.58] opacity-90" />
+          <h2 className="font-cinzel text-base sm:text-lg md:text-xl font-bold tracking-[0.16em] uppercase text-[#3A2118]">
+            WEDDING CARD
+          </h2>
+          <PalaceLantern size="sm" className="scale-[0.58] opacity-90" />
+        </div>
         <span className="font-serif-luxury italic text-xs sm:text-[13px] text-[#3A2118]">
           {isOpen ? 'Fold card or share your heartfelt congratulations' : 'Tap the wax seal in the center to open the card'}
         </span>
@@ -101,7 +105,7 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
       {/* CENTER STAGE: 3D FOLDING WEDDING CARD */}
       <div className="relative z-10 my-auto w-full max-w-sm sm:max-w-md flex flex-col items-center justify-center px-2 py-1">
         <div 
-          className="relative w-full max-w-[340px] sm:max-w-[380px] h-[390px] sm:h-[420px] rounded-2xl shadow-[0_16px_40px_rgba(58,33,24,0.24)] bg-gradient-to-br from-[#F5EBDD] via-[#F5EBDD] to-[#B9786D]/30 border-2 border-[#C9A24A] flex items-center justify-center overflow-hidden"
+          className="wedding-card-shell relative w-full max-w-[360px] sm:max-w-[400px] h-[min(66dvh,520px)] min-h-[390px] sm:h-[min(64dvh,560px)] sm:min-h-[460px] rounded-2xl shadow-[0_16px_40px_rgba(58,33,24,0.24)] bg-gradient-to-br from-[#F5EBDD] via-[#F5EBDD] to-[#B9786D]/30 border-2 border-[#641C24] flex items-center justify-center overflow-hidden"
           style={{ perspective: '1200px' }}
         >
           {/* ======================================================== */}
@@ -115,7 +119,7 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
             {/* Top: Sacred Bismillah */}
             <div className="pt-1">
               <BismillahCalligraphy className="scale-75 sm:scale-85" />
-              <span className="font-cinzel text-[7.5px] tracking-[0.24em] uppercase text-[#C9A24A] font-bold block mt-1">
+              <span className="font-cinzel text-[7.5px] tracking-[0.24em] uppercase text-[#641C24] font-bold block mt-1">
                 DAWAT-E-WALIMA
               </span>
             </div>
@@ -124,16 +128,16 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
             {/* Abdul Hannan & Dr. Romana Bano */}
             <div className="my-auto py-1 w-full">
               <p className="font-cormorant text-xs sm:text-[13px] italic text-[#3A2118] mb-1">
-                Cordially invite you to the wedding celebrations of
+                We cordially invite you to celebrate the joyous Walima ceremony of our grandson.
               </p>
 
               <div className="bg-[#F5EBDD]/80 border border-[#C9A24A]/50 rounded-xl p-2.5 sm:p-3 shadow-2xs">
                 {/* Groom Name */}
                 <h1 className="font-serif-luxury text-xl sm:text-2xl font-bold text-[#3A2118] tracking-wide leading-tight">
-                  Abdul Hannan
+                  {data.groomFullName}
                 </h1>
                 <p className="font-cormorant text-[11px] text-[#3A2118] italic">
-                  Son of Ataul Rehman Chowhan &amp; Nasreen Chowhan
+                  Son of {data.groomParents.father} &amp; {data.groomParents.mother}
                 </p>
 
                 {/* & Symbol */}
@@ -145,24 +149,24 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
 
                 {/* Bride Name */}
                 <h1 className="font-serif-luxury text-xl sm:text-2xl font-bold text-[#641C24] tracking-wide leading-tight">
-                  Dr. Romana Bano
+                  {data.bride}
                 </h1>
                 <p className="font-cormorant text-[11px] text-[#3A2118] italic">
-                  Daughter of Haji Asrar Ahmed &amp; Hajjan Shabnam Jatoo
+                  Daughter of {data.brideParents.father} &amp; {data.brideParents.mother}
                 </p>
               </div>
 
               {/* Ceremony Dates Summary */}
               <div className="grid grid-cols-2 gap-1.5 mt-2 text-left">
                 <div className="bg-[#F5EBDD] border border-[#C9A24A]/30 rounded-lg p-1.5">
-                  <span className="font-cinzel text-[7px] tracking-wider text-[#C9A24A] uppercase font-bold block">
+                  <span className="font-cinzel text-[7px] tracking-wider text-[#641C24] uppercase font-bold block">
                     NIKAH
                   </span>
                   <p className="font-serif-luxury text-[10px] font-bold text-[#3A2118] leading-tight">
-                    Sat, 14 Nov 2026
+                    {data.nikahDay}, {data.nikahDisplayDate}
                   </p>
                   <p className="text-[9px] text-[#3A2118] truncate">
-                    Laxmangarh, Sikar
+                    {data.nikahCity}
                   </p>
                 </div>
 
@@ -171,10 +175,10 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
                     RECEPTION
                   </span>
                   <p className="font-serif-luxury text-[10px] font-bold text-[#3A2118] leading-tight">
-                    Sun, 15 Nov 2026
+                    {data.receptionDay}, {data.receptionDisplayDate}
                   </p>
                   <p className="text-[9px] text-[#3A2118] truncate">
-                    Hussain Gunj, Sikar
+                    {data.receptionCity}
                   </p>
                 </div>
               </div>
@@ -183,11 +187,11 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
             {/* Bottom Actions inside Card */}
             <div className="w-full pb-1 flex flex-col gap-1.5">
               <div className="grid grid-cols-2 gap-1.5 w-full">
-                <a href={data.receptionMapsUrl} target="_blank" rel="noopener noreferrer" className="py-1.5 px-2 rounded-lg bg-[#F5EBDD] border border-[#C9A24A]/60 font-cinzel text-[8.5px] uppercase text-[#3A2118] font-bold flex items-center justify-center gap-1 shadow-2xs hover:bg-[#641C24] hover:text-white transition-colors">
+                <a href={data.receptionMapsUrl} target="_blank" rel="noopener noreferrer" className="py-2 px-2 rounded-lg bg-[#F5EBDD] border border-[#C9A24A]/60 font-cinzel text-[9px] uppercase text-[#3A2118] font-bold flex items-center justify-center gap-1 shadow-2xs hover:bg-[#641C24] hover:text-[#F5EBDD] transition-colors">
                   <Navigation className="w-3 h-3 text-[#C9A24A]" />
                   View Location
                 </a>
-                <a href={googleCalUrl} target="_blank" rel="noopener noreferrer" className="py-1.5 px-2 rounded-lg bg-[#F5EBDD] border border-[#C9A24A]/60 font-cinzel text-[8.5px] uppercase text-[#3A2118] font-bold flex items-center justify-center gap-1 shadow-2xs hover:bg-[#641C24] hover:text-white transition-colors">
+                <a href={googleCalUrl} target="_blank" rel="noopener noreferrer" className="py-2 px-2 rounded-lg bg-[#F5EBDD] border border-[#C9A24A]/60 font-cinzel text-[9px] uppercase text-[#3A2118] font-bold flex items-center justify-center gap-1 shadow-2xs hover:bg-[#641C24] hover:text-[#F5EBDD] transition-colors">
                   <Calendar className="w-3 h-3 text-[#C9A24A]" />
                   Add to Calendar
                 </a>
@@ -195,7 +199,7 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
               <div className="grid grid-cols-2 gap-1.5 w-full">
                 <a
                   href={`tel:${data.contactPhoneCall}`}
-                  className="py-1.5 px-2 rounded-lg bg-[#F5EBDD] border border-[#C9A24A]/60 font-cinzel text-[8.5px] uppercase text-[#3A2118] font-bold flex items-center justify-center gap-1 shadow-2xs hover:bg-[#641C24] hover:text-white transition-colors"
+                  className="py-2 px-2 rounded-lg bg-[#F5EBDD] border border-[#C9A24A]/60 font-cinzel text-[9px] uppercase text-[#3A2118] font-bold flex items-center justify-center gap-1 shadow-2xs hover:bg-[#641C24] hover:text-[#F5EBDD] transition-colors"
                 >
                   <Phone className="w-3 h-3 text-[#C9A24A]" />
                   Call Host
@@ -204,7 +208,7 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-1.5 px-2 rounded-lg bg-[#F5EBDD] border border-[#C9A24A]/60 font-cinzel text-[8.5px] uppercase text-[#641C24] font-bold flex items-center justify-center gap-1 shadow-2xs hover:bg-[#641C24] hover:text-white transition-colors"
+                  className="py-2 px-2 rounded-lg bg-[#F5EBDD] border border-[#C9A24A]/60 font-cinzel text-[9px] uppercase text-[#641C24] font-bold flex items-center justify-center gap-1 shadow-2xs hover:bg-[#641C24] hover:text-[#F5EBDD] transition-colors"
                 >
                   <MessageCircle className="w-3 h-3" />
                   WhatsApp
@@ -215,7 +219,7 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
               <button
                 type="button"
                 onClick={handleCloseCard}
-                className="cursor-pointer py-1 text-center font-cinzel text-[8.5px] tracking-widest uppercase text-[#C9A24A] hover:text-[#641C24] font-bold transition-colors"
+                className="cursor-pointer py-1 text-center font-cinzel text-[8.5px] tracking-widest uppercase text-[#641C24] hover:text-[#C66A24] font-bold transition-colors"
               >
                 [ FOLD &amp; CLOSE CARD ]
               </button>
@@ -250,7 +254,7 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
 
             {/* Top Insignia */}
             <div className="pt-2 text-center">
-              <span className="font-cinzel text-[7px] sm:text-[8px] tracking-[0.2em] text-[#C9A24A] uppercase font-bold">
+              <span className="font-cinzel text-[7px] sm:text-[8px] tracking-[0.2em] text-[#641C24] uppercase font-bold">
                 GROOM
               </span>
             </div>
@@ -321,7 +325,7 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
               <h3 className="font-serif-luxury text-base sm:text-lg font-bold text-[#641C24] tracking-wide leading-tight">
                 Romana Bano
               </h3>
-              <span className="font-cinzel text-[6.5px] sm:text-[7.5px] tracking-[0.22em] text-[#C9A24A] uppercase font-semibold mt-0.5">
+              <span className="font-cinzel text-[6.5px] sm:text-[7.5px] tracking-[0.22em] text-[#641C24] uppercase font-semibold mt-0.5">
                 JATOO
               </span>
             </div>
@@ -338,14 +342,16 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
           {/* ======================================================== */}
           <AnimatePresence>
             {!isOpen && (
-              <motion.div
+              <motion.button
+                type="button"
+                aria-label="Open wedding card"
                 onClick={handleOpenCard}
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0, opacity: 0, transition: { duration: 0.3 } }}
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.95 }}
-                className="absolute z-30 cursor-pointer flex flex-col items-center justify-center"
+                className="absolute z-30 cursor-pointer appearance-none border-0 bg-transparent p-0 text-inherit flex flex-col items-center justify-center"
               >
                 {/* Radial golden glow */}
                 <div className="absolute inset-0 rounded-full bg-[#C9A24A]/40 blur-md animate-pulse" />
@@ -369,7 +375,7 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
                     TAP TO OPEN
                   </span>
                 </div>
-              </motion.div>
+              </motion.button>
             )}
           </AnimatePresence>
         </div>

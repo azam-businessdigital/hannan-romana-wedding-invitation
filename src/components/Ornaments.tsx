@@ -149,13 +149,14 @@ export const PalaceLantern: React.FC<{
       >
         <defs>
           <linearGradient id="brassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#C9A24A" />
-            <stop offset="50%" stopColor="#C9A24A" />
-            <stop offset="100%" stopColor="#C9A24A" />
+            <stop offset="0%" stopColor="#F5EBDD" />
+            <stop offset="38%" stopColor="#C9A24A" />
+            <stop offset="72%" stopColor="#C66A24" />
+            <stop offset="100%" stopColor="#641C24" />
           </linearGradient>
           <radialGradient id="candleGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#C9A24A" />
-            <stop offset="40%" stopColor="#C66A24" />
+            <stop offset="0%" stopColor="#F5EBDD" />
+            <stop offset="40%" stopColor="#C9A24A" />
             <stop offset="100%" stopColor="#C66A24" stopOpacity="0" />
           </radialGradient>
         </defs>

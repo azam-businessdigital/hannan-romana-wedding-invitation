@@ -104,6 +104,12 @@ main :is(.rounded-xl.border, .rounded-2xl.border, [class*="rounded-"][class*="bo
   box-shadow: inset 0 0 0 1px rgba(185, 120, 109, 0.18), 0 2px 10px rgba(58, 33, 24, 0.06);
 }
 
+/* Keep antique gold trim crisp against the dusty rose card stock. */
+.wedding-card-shell {
+  border-color: #641C24 !important;
+  box-shadow: 0 0 0 2px #C9A24A, 0 0 0 4px rgba(100, 28, 36, 0.2), 0 16px 40px rgba(58, 33, 24, 0.24) !important;
+}
+
 .paper-card {
   background: #F5EBDD;
   box-shadow: 
@@ -153,8 +159,9 @@ main :is(.rounded-xl.border, .rounded-2xl.border, [class*="rounded-"][class*="bo
   border-image-width: 12px;
   border-image-repeat: round;
   box-shadow: 
-    0 0 0 1px rgba(212, 155, 141, 0.4),
-    inset 0 0 8px rgba(60, 25, 20, 0.15);
+    0 0 0 1px rgba(201, 162, 74, 0.65),
+    inset 0 0 8px rgba(58, 33, 24, 0.15);
+  filter: drop-shadow(0 0 1px #641C24) drop-shadow(0 0 3px rgba(201, 162, 74, 0.38));
 }
 
 @media (min-width: 640px) {
