@@ -1,0 +1,228 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-display: 'Cinzel', 'Bodoni Moda', 'Cormorant Garamond', Georgia, serif;
+    --font-script: 'Great Vibes', cursive;
+    --font-cinzel: 'Cinzel', serif;
+    --font-sans: 'Montserrat', sans-serif;
+    --font-arabic: 'Amiri', serif;
+    
+    /* Requested Rajasthani wedding palette */
+    --color-palace-dark: #3A2118;
+    --color-sandstone-deep: #641C24;
+    --color-sandstone-warm: #3A2118;
+    --color-parchment: #F5EBDD;
+    --color-parchment-warm: #F5EBDD;
+    --color-rose-sandstone: #B9786D;
+    --color-rose-sandstone-light: #B9786D;
+    --color-gold: #C9A24A;
+    --color-gold-bright: #C9A24A;
+    --color-gold-dark: #C9A24A;
+    --color-rajasthan-crimson: #641C24;
+    --color-saffron: #C66A24;
+    --color-dusty-rose: #B9786D;
+    --color-peacock-blue: #0E4B75;
+    --color-haveli-sage: #2D6349;
+    --color-text-primary: #3A2118;
+    --color-text-secondary: #3A2118;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-serif);
+    background-color: #F5EBDD;
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior-y: none;
+  }
+}
+
+/* Custom font utility classes */
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-cinzel-decorative {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+}
+
+.font-playfair {
+  font-family: var(--font-display);
+}
+
+.font-script {
+  font-family: 'Great Vibes', cursive;
+}
+
+.font-great-vibes {
+  font-family: 'Great Vibes', cursive;
+}
+
+.font-serif-luxury {
+  font-family: var(--font-display);
+  letter-spacing: 0.025em;
+}
+
+.font-sans-body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.font-arabic {
+  font-family: 'Amiri', serif;
+}
+
+/* Luxurious Royal Rajasthani Palace Parchment & Makrana Marble Paper Effects */
+.paper-emboss {
+  background: linear-gradient(165deg, #F5EBDD 0%, rgba(245, 235, 221, 0.97) 55%, rgba(201, 162, 74, 0.12) 100%);
+  box-shadow: 
+    inset 1px 1px 2px rgba(255, 255, 255, 0.95),
+    inset -1px -1px 2px rgba(58, 33, 24, 0.1),
+    0 16px 45px rgba(58, 33, 24, 0.28);
+}
+
+/* Rose sandstone jali frame used by every invitation page. */
+.paper-emboss > div.absolute[class*="rounded-xl"].pointer-events-none {
+  border: 7px solid transparent !important;
+  border-radius: 18px 18px 10px 10px !important;
+  border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Crect x='1' y='1' width='46' height='46' fill='%23F5EBDD' fill-opacity='.28' stroke='%23B9786D' stroke-width='1.4'/%3E%3Cpath d='M24 2 30 10 38 12 30 16 24 23 18 16 10 12 18 10zM24 25 29 32 36 35 29 38 24 46 19 38 12 35 19 32z' fill='%23C9A24A' fill-opacity='.52' stroke='%23641C24' stroke-width='.8'/%3E%3Ccircle cx='24' cy='12' r='2.2' fill='%23F5EBDD' stroke='%23641C24' stroke-width='.7'/%3E%3Ccircle cx='24' cy='36' r='2.2' fill='%23F5EBDD' stroke='%23641C24' stroke-width='.7'/%3E%3C/svg%3E");
+  border-image-slice: 16;
+  border-image-width: 7px;
+  border-image-repeat: round;
+}
+
+.paper-emboss > div.absolute[class*="rounded-lg"].pointer-events-none {
+  display: none;
+}
+
+/* Give inset cards the same Jaipur rose-stone and brass finish. */
+main :is(.rounded-xl.border, .rounded-2xl.border, [class*="rounded-"][class*="border-"]):not(.rajasthani-stone-border):not([class*="rounded-full"]) {
+  border-color: rgba(201, 162, 74, 0.7) !important;
+  box-shadow: inset 0 0 0 1px rgba(185, 120, 109, 0.18), 0 2px 10px rgba(58, 33, 24, 0.06);
+}
+
+.paper-card {
+  background: #F5EBDD;
+  box-shadow: 
+    0 10px 32px -5px rgba(58, 33, 24, 0.18),
+    0 0 0 1px rgba(201, 162, 74, 0.35),
+    inset 0 0 40px rgba(201, 162, 74, 0.1);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #C66A24 0%, #C9A24A 52%, #B9786D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-crimson-gradient {
+  background: linear-gradient(135deg, #641C24 0%, #B9786D 54%, #3A2118 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold-shadow {
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8), 0 -1px 1px rgba(40, 25, 10, 0.15);
+}
+
+.embossed-border {
+  border: 1px solid rgba(201, 162, 74, 0.55);
+  box-shadow: 
+    inset 0 0 0 3px rgba(245, 235, 221, 0.9),
+    inset 0 0 0 4px rgba(201, 162, 74, 0.3);
+}
+
+/* Subtle Rajasthani Jali Lattice Screen Texture with Architectural Arches & Mandala Motifs */
+.bg-rajasthani-jali {
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23C9A24A' stroke-width='0.7' stroke-opacity='0.25'%3E%3C!-- Scalloped Arch Profile --%3E%3Cpath d='M 0 40 L 0 15 C 0 10 6 6 12 6 C 18 6 24 2 32 1 C 38 0 42 0 48 1 C 56 2 62 6 68 6 C 74 6 80 10 80 15 L 80 40' /%3E%3C!-- Traditional 8-petal Lotus Mandala Rosette in Center --%3E%3Ccircle cx='40' cy='40' r='12' stroke-dasharray='2 2' stroke-opacity='0.25' /%3E%3Ccircle cx='40' cy='40' r='6' stroke-opacity='0.35' /%3E%3Ccircle cx='40' cy='40' r='2' fill='%23C9A24A' fill-opacity='0.35' /%3E%3Cpath d='M 40 24 L 40 56 M 24 40 L 56 40 M 29 29 L 51 51 M 29 51 L 51 29' stroke-opacity='0.18' /%3E%3C!-- Corner floral dots --%3E%3Ccircle cx='0' cy='0' r='2.2' fill='%23C9A24A' fill-opacity='0.25' /%3E%3Ccircle cx='80' cy='0' r='2.2' fill='%23C9A24A' fill-opacity='0.25' /%3E%3Ccircle cx='0' cy='80' r='2.2' fill='%23C9A24A' fill-opacity='0.25' /%3E%3Ccircle cx='80' cy='80' r='2.2' fill='%23C9A24A' fill-opacity='0.25' /%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(circle, rgba(201, 162, 74, 0.16) 1px, transparent 1px);
+  background-size: 80px 80px, 20px 20px;
+}
+
+/* Decorative Rajasthani Ornate Carved Stone Border-Image (Jaipur Pink Marble & Sandstone) */
+.rajasthani-stone-border {
+  border-style: solid;
+  border-color: transparent;
+  border-width: 12px;
+  border-image-source: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cdefs%3E%3ClinearGradient id='stoneGold' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23F5EBDD' /%3E%3Cstop offset='25%25' stop-color='%23C9A24A' /%3E%3Cstop offset='65%25' stop-color='%23C9A24A' /%3E%3Cstop offset='100%25' stop-color='%23641C24' /%3E%3C/linearGradient%3E%3ClinearGradient id='stoneShade' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23B9786D' /%3E%3Cstop offset='100%25' stop-color='%233A2118' /%3E%3C/linearGradient%3E%3C/defs%3E%3C!-- Outer stone molding frame --%3E%3Crect x='1.5' y='1.5' width='93' height='93' fill='none' stroke='url(%23stoneGold)' stroke-width='1.5' /%3E%3Crect x='5.5' y='5.5' width='85' height='85' fill='none' stroke='url(%23stoneGold)' stroke-width='0.8' stroke-dasharray='2 2' opacity='0.7' /%3E%3C!-- Inner stone molding frame --%3E%3Crect x='28.5' y='28.5' width='39' height='39' fill='none' stroke='url(%23stoneGold)' stroke-width='1.2' /%3E%3Crect x='30.5' y='30.5' width='35' height='35' fill='none' stroke='url(%23stoneGold)' stroke-width='0.6' opacity='0.5' /%3E%3C!-- 4 CORNERS: Ornate Carved Rajasthani Stone Rosettes --%3E%3Cg transform='translate(16, 16)'%3E%3Ccircle cx='0' cy='0' r='11' fill='%23B9786D' fill-opacity='0.25' stroke='url(%23stoneGold)' stroke-width='1.2' /%3E%3Ccircle cx='0' cy='0' r='7.5' fill='none' stroke='url(%23stoneShade)' stroke-width='0.8' stroke-dasharray='1.5 1.5' /%3E%3Cpath d='M 0 -10.5 C 2 -7, 4 -7, 0 -3.5 C -4 -7, -2 -7, 0 -10.5 Z' fill='url(%23stoneGold)' /%3E%3Cpath d='M 0 10.5 C 2 7, 4 7, 0 3.5 C -4 7, -2 7, 0 10.5 Z' fill='url(%23stoneGold)' /%3E%3Cpath d='M -10.5 0 C -7 2, -7 4, -3.5 0 C -7 -4, -7 -2, -10.5 0 Z' fill='url(%23stoneGold)' /%3E%3Cpath d='M 10.5 0 C 7 2, 7 4, 3.5 0 C 7 -4, 7 -2, 10.5 0 Z' fill='url(%23stoneGold)' /%3E%3Ccircle cx='0' cy='0' r='3.2' fill='url(%23stoneGold)' /%3E%3Ccircle cx='0' cy='0' r='1.2' fill='%23F5EBDD' /%3E%3C/g%3E%3Cg transform='translate(80, 16)'%3E%3Ccircle cx='0' cy='0' r='11' fill='%23B9786D' fill-opacity='0.25' stroke='url(%23stoneGold)' stroke-width='1.2' /%3E%3Ccircle cx='0' cy='0' r='7.5' fill='none' stroke='url(%23stoneShade)' stroke-width='0.8' stroke-dasharray='1.5 1.5' /%3E%3Cpath d='M 0 -10.5 C 2 -7, 4 -7, 0 -3.5 C -4 -7, -2 -7, 0 -10.5 Z' fill='url(%23stoneGold)' /%3E%3Cpath d='M 0 10.5 C 2 7, 4 7, 0 3.5 C -4 7, -2 7, 0 10.5 Z' fill='url(%23stoneGold)' /%3E%3Cpath d='M -10.5 0 C -7 2, -7 4, -3.5 0 C -7 -4, -7 -2, -10.5 0 Z' fill='url(%23stoneGold)' /%3E%3Cpath d='M 10.5 0 C 7 2, 7 4, 3.5 0 C 7 -4, 7 -2, 10.5 0 Z' fill='url(%23stoneGold)' /%3E%3Ccircle cx='0' cy='0' r='3.2' fill='url(%23stoneGold)' /%3E%3Ccircle cx='0' cy='0' r='1.2' fill='%23F5EBDD' /%3E%3C/g%3E%3Cg transform='translate(16, 80)'%3E%3Ccircle cx='0' cy='0' r='11' fill='%23B9786D' fill-opacity='0.25' stroke='url(%23stoneGold)' stroke-width='1.2' /%3E%3Ccircle cx='0' cy='0' r='7.5' fill='none' stroke='url(%23stoneShade)' stroke-width='0.8' stroke-dasharray='1.5 1.5' /%3E%3Cpath d='M 0 -10.5 C 2 -7, 4 -7, 0 -3.5 C -4 -7, -2 -7, 0 -10.5 Z' fill='url(%23stoneGold)' /%3E%3Cpath d='M 0 10.5 C 2 7, 4 7, 0 3.5 C -4 7, -2 7, 0 10.5 Z' fill='url(%23stoneGold)' /%3E%3Cpath d='M -10.5 0 C -7 2, -7 4, -3.5 0 C -7 -4, -7 -2, -10.5 0 Z' fill='url(%23stoneGold)' /%3E%3Cpath d='M 10.5 0 C 7 2, 7 4, 3.5 0 C 7 -4, 7 -2, 10.5 0 Z' fill='url(%23stoneGold)' /%3E%3Ccircle cx='0' cy='0' r='3.2' fill='url(%23stoneGold)' /%3E%3Ccircle cx='0' cy='0' r='1.2' fill='%23F5EBDD' /%3E%3C/g%3E%3Cg transform='translate(80, 80)'%3E%3Ccircle cx='0' cy='0' r='11' fill='%23B9786D' fill-opacity='0.25' stroke='url(%23stoneGold)' stroke-width='1.2' /%3E%3Ccircle cx='0' cy='0' r='7.5' fill='none' stroke='url(%23stoneShade)' stroke-width='0.8' stroke-dasharray='1.5 1.5' /%3E%3Cpath d='M 0 -10.5 C 2 -7, 4 -7, 0 -3.5 C -4 -7, -2 -7, 0 -10.5 Z' fill='url(%23stoneGold)' /%3E%3Cpath d='M 0 10.5 C 2 7, 4 7, 0 3.5 C -4 7, -2 7, 0 10.5 Z' fill='url(%23stoneGold)' /%3E%3Cpath d='M -10.5 0 C -7 2, -7 4, -3.5 0 C -7 -4, -7 -2, -10.5 0 Z' fill='url(%23stoneGold)' /%3E%3Cpath d='M 10.5 0 C 7 2, 7 4, 3.5 0 C 7 -4, 7 -2, 10.5 0 Z' fill='url(%23stoneGold)' /%3E%3Ccircle cx='0' cy='0' r='3.2' fill='url(%23stoneGold)' /%3E%3Ccircle cx='0' cy='0' r='1.2' fill='%23F5EBDD' /%3E%3C/g%3E%3C!-- 4 EDGES: Chiseled Sandstone Frieze with Diamond Lozenges --%3E%3Cg transform='translate(48, 16)'%3E%3Cpolygon points='0,5 9,16 0,27 -9,16' fill='%23C9A24A' fill-opacity='0.3' stroke='url(%23stoneGold)' stroke-width='1' /%3E%3Ccircle cx='0' cy='16' r='2.8' fill='url(%23stoneGold)' /%3E%3Ccircle cx='0' cy='16' r='1' fill='%23F5EBDD' /%3E%3C/g%3E%3Cg transform='translate(48, 80)'%3E%3Cpolygon points='0,5 9,16 0,27 -9,16' fill='%23C9A24A' fill-opacity='0.3' stroke='url(%23stoneGold)' stroke-width='1' /%3E%3Ccircle cx='0' cy='16' r='2.8' fill='url(%23stoneGold)' /%3E%3Ccircle cx='0' cy='16' r='1' fill='%23F5EBDD' /%3E%3C/g%3E%3Cg transform='translate(16, 48)'%3E%3Cpolygon points='5,0 16,9 27,0 16,-9' fill='%23C9A24A' fill-opacity='0.3' stroke='url(%23stoneGold)' stroke-width='1' /%3E%3Ccircle cx='16' cy='0' r='2.8' fill='url(%23stoneGold)' /%3E%3Ccircle cx='16' cy='0' r='1' fill='%23F5EBDD' /%3E%3C/g%3E%3Cg transform='translate(80, 48)'%3E%3Cpolygon points='5,0 16,9 27,0 16,-9' fill='%23C9A24A' fill-opacity='0.3' stroke='url(%23stoneGold)' stroke-width='1' /%3E%3Ccircle cx='16' cy='0' r='2.8' fill='url(%23stoneGold)' /%3E%3Ccircle cx='16' cy='0' r='1' fill='%23F5EBDD' /%3E%3C/g%3E%3C/svg%3E");
+  border-image-slice: 32;
+  border-image-width: 12px;
+  border-image-repeat: round;
+  box-shadow: 
+    0 0 0 1px rgba(212, 155, 141, 0.4),
+    inset 0 0 8px rgba(60, 25, 20, 0.15);
+}
+
+@media (min-width: 640px) {
+  .rajasthani-stone-border {
+    border-width: 16px;
+    border-image-width: 16px;
+  }
+}
+
+/* Hide scrollbar for clean luxury presentation */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Realistic 3D Envelope Styles */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(201, 162, 74, 0.35), inset 0 0 8px rgba(245, 235, 221, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(201, 162, 74, 0.65), inset 0 0 14px rgba(245, 235, 221, 0.9);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+/* Warm flickering candle flame animation inside palace lanterns */
+@keyframes candleFlicker {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+    opacity: 0.92;
+    filter: drop-shadow(0 0 8px rgba(255, 185, 70, 0.9));
+  }
+  25% {
+    transform: scale(1.08, 0.95) translateY(-0.5px);
+    opacity: 1;
+    filter: drop-shadow(0 0 12px rgba(255, 200, 90, 1));
+  }
+  50% {
+    transform: scale(0.96, 1.04) translateY(0.5px);
+    opacity: 0.85;
+    filter: drop-shadow(0 0 6px rgba(255, 170, 50, 0.8));
+  }
+  75% {
+    transform: scale(1.04, 0.98) translateY(-0.3px);
+    opacity: 0.96;
+    filter: drop-shadow(0 0 10px rgba(255, 190, 80, 0.95));
+  }
+}
+
+.animate-candle-flicker {
+  animation: candleFlicker 2.2s infinite ease-in-out;
+}

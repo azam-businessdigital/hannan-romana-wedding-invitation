@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix Mujeeb \u0026 Ruqaiya Wedding Invitation",
+  "description": "A luxury cinematic digital wedding invitation for Mujeeb \u0026 Ruqaiya, featuring embossed floral aesthetics, music, interactive envelope, and celebration details.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
