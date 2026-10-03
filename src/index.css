@@ -253,7 +253,7 @@ main :is(.rounded-xl.border, .rounded-2xl.border, [class*="rounded-"][class*="bo
 
 /* Full-screen royal doorway reveal */
 .haveli-entrance {
-  --door-time: 2.4s;
+  --door-time: 1.6s;
   position: fixed;
   inset: 0;
   width: 100vw;

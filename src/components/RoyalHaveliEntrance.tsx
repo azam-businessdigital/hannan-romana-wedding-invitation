@@ -10,12 +10,11 @@ export function RoyalHaveliEntrance({ onOpened }: RoyalHaveliEntranceProps) {
   const openDoors = () => {
     if (state !== 'closed') return;
     setState('opening');
-    // Reveal the slide as soon as the door swing completes; fade the entrance
-    // away over the slide instead of exposing the dark backdrop first.
+    // Match the door transition so the slide is revealed right as it finishes.
     window.setTimeout(() => {
       setState('opened');
       onOpened?.();
-    }, 2520);
+    }, 1700);
   };
 
   return (
