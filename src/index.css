@@ -253,7 +253,7 @@ main :is(.rounded-xl.border, .rounded-2xl.border, [class*="rounded-"][class*="bo
 
 /* Full-screen royal doorway reveal */
 .haveli-entrance {
-  --door-time: 2.35s;
+  --door-time: 1.65s;
   position: fixed;
   inset: 0;
   width: 100vw;
@@ -265,7 +265,7 @@ main :is(.rounded-xl.border, .rounded-2xl.border, [class*="rounded-"][class*="bo
   background: #17100d;
   color: #f5ebdd;
   opacity: 1;
-  transition: opacity .65s ease;
+  transition: opacity .35s ease;
   will-change: opacity;
 }
 .haveli-entrance.is-opened { opacity: 0; pointer-events: none; }
@@ -322,7 +322,7 @@ main :is(.rounded-xl.border, .rounded-2xl.border, [class*="rounded-"][class*="bo
   backface-visibility: hidden;
   will-change: transform;
   box-shadow: inset 0 0 24px rgba(25, 12, 6, .54);
-  transition: transform var(--door-time) cubic-bezier(.2,.65,.25,1) .18s, filter 2.35s ease .18s;
+  transition: transform var(--door-time) cubic-bezier(.2,.65,.25,1) .1s, filter 1.65s ease .1s;
 }
 .haveli-door::after {
   content: '';

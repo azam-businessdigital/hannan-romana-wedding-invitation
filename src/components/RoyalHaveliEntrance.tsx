@@ -14,8 +14,8 @@ export function RoyalHaveliEntrance({ onOpen, onOpened }: RoyalHaveliEntrancePro
     onOpen?.();
     window.setTimeout(() => {
       setState('opened');
-      window.setTimeout(() => onOpened?.(), 650);
-    }, 2550);
+      window.setTimeout(() => onOpened?.(), 350);
+    }, 1800);
   };
 
   return (
