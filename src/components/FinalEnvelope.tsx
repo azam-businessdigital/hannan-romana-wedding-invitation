@@ -111,7 +111,7 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
           {/* ======================================================== */}
           {/* THE INNER REVEALED INVITATION CARD (Visible when open)   */}
           {/* ======================================================== */}
-          <div className="absolute inset-0 p-4 sm:p-5 flex flex-col items-center justify-between text-center select-text overflow-y-auto">
+          {isOpen && <div className="absolute inset-0 p-4 sm:p-5 flex flex-col items-center justify-between text-center select-text overflow-y-auto">
             {/* Inner Gold Foil Frame */}
             <div className="absolute inset-2 border border-[#C9A24A]/50 rounded-xl pointer-events-none" />
             <div className="absolute inset-3 border border-dashed border-[#C9A24A]/30 rounded-lg pointer-events-none" />
@@ -224,7 +224,7 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
                 [ FOLD &amp; CLOSE CARD ]
               </button>
             </div>
-          </div>
+          </div>}
 
           {/* ======================================================== */}
           {/* LEFT DOOR FLAP: ABDUL HANNAN (Groom panel)               */}
@@ -241,7 +241,7 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
             }}
             transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
             style={{ transformOrigin: 'left center' }}
-            className="absolute left-0 top-0 bottom-0 w-1/2 bg-gradient-to-r from-[#F5EBDD] via-[#F5EBDD] to-[#C9A24A]/20 border-r-2 border-[#C9A24A] z-20 cursor-pointer flex flex-col items-center justify-between p-3 sm:p-4 select-none"
+            className="absolute left-0 top-0 bottom-0 w-1/2 bg-[#F5EBDD] bg-gradient-to-r from-[#F5EBDD] via-[#F5EBDD] to-[#C9A24A]/20 border-r-2 border-[#C9A24A] z-20 cursor-pointer flex flex-col items-center justify-between p-3 sm:p-4 select-none"
           >
             {/* Flap Gold Inner Border */}
             <div className="absolute inset-1.5 border border-[#C9A24A]/40 rounded-l-xl pointer-events-none" />
@@ -296,7 +296,7 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
             }}
             transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
             style={{ transformOrigin: 'right center' }}
-            className="absolute right-0 top-0 bottom-0 w-1/2 bg-gradient-to-l from-[#F5EBDD] via-[#F5EBDD] to-[#C9A24A]/20 border-l-2 border-[#C9A24A] z-20 cursor-pointer flex flex-col items-center justify-between p-3 sm:p-4 select-none"
+            className="absolute right-0 top-0 bottom-0 w-1/2 bg-[#F5EBDD] bg-gradient-to-l from-[#F5EBDD] via-[#F5EBDD] to-[#C9A24A]/20 border-l-2 border-[#C9A24A] z-20 cursor-pointer flex flex-col items-center justify-between p-3 sm:p-4 select-none"
           >
             {/* Flap Gold Inner Border */}
             <div className="absolute inset-1.5 border border-[#C9A24A]/40 rounded-r-xl pointer-events-none" />
