@@ -11,7 +11,7 @@ interface ReceptionDetailOnlyProps {
 /**
  * Slide 5: RECEPTION DETAILS ONLY
  * Per user instruction: "reception details only"
- * Dedicated exclusively to the Shahi Dawat-e-Walima celebration feast, timings, venue, and directions.
+ * Dedicated exclusively to the Walima Ceremony celebration, timings, venue, and directions.
  */
 export const ReceptionDetailOnly: React.FC<ReceptionDetailOnlyProps> = ({ data }) => {
   return (
@@ -62,7 +62,7 @@ export const ReceptionDetailOnly: React.FC<ReceptionDetailOnlyProps> = ({ data }
         </div>
 
         <h2 className="font-cinzel text-lg sm:text-xl md:text-2xl font-bold tracking-[0.18em] uppercase text-[#3A2118] mt-0.5">
-          DAWAT-E-WALIMA
+          WALIMA CEREMONY
         </h2>
         <span className="font-serif-luxury italic text-xs sm:text-[13px] text-[#3A2118]">
           Grand Wedding Reception &amp; Celebratory Feast
@@ -87,7 +87,7 @@ export const ReceptionDetailOnly: React.FC<ReceptionDetailOnlyProps> = ({ data }
         {/* The Grand Reception Card */}
         <div className="w-full bg-[#F5EBDD]/95 border-2 border-[#C9A24A]/60 rounded-2xl p-4 sm:p-5 shadow-[0_4px_20px_rgba(40,20,10,0.08)] flex flex-col gap-3">
           {/* Date & Time Row */}
-          <div className="grid grid-cols-1 min-[380px]:grid-cols-2 gap-2 pb-2.5 border-b border-[#C9A24A]/30">
+          <div className="flex flex-col gap-3 pb-2.5 border-b border-[#C9A24A]/30">
             <div className="flex min-w-0 items-start gap-2">
               <div className="w-8 h-8 rounded-full bg-[#F5EBDD] border border-[#C9A24A]/60 flex items-center justify-center shrink-0 text-[#641C24]">
                 <Calendar className="w-4 h-4" />
@@ -168,7 +168,7 @@ export const ReceptionDetailOnly: React.FC<ReceptionDetailOnlyProps> = ({ data }
         <FloralDivider className="w-40 sm:w-48 text-[#C9A24A] opacity-75 mb-1" />
         <div className="flex items-center justify-center">
           <span className="font-cinzel text-[8px] tracking-[0.25em] text-[#C9A24A] uppercase font-semibold">
-            DAWAT-E-WALIMA
+            WALIMA CEREMONY
           </span>
         </div>
       </motion.div>

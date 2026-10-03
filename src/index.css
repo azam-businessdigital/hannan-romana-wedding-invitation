@@ -75,6 +75,18 @@
   font-family: 'Amiri', serif;
 }
 
+/* Give the principal names and section titles a more ceremonial royal face. */
+.paper-emboss h1 {
+  font-family: 'Cinzel Decorative', 'Cinzel', 'Bodoni Moda', serif;
+  letter-spacing: 0.035em;
+}
+
+.paper-emboss h2,
+.paper-emboss h3 {
+  font-family: 'Cinzel', 'Bodoni Moda', serif;
+  letter-spacing: 0.08em;
+}
+
 /* Luxurious Royal Rajasthani Palace Parchment & Makrana Marble Paper Effects */
 .paper-emboss {
   background: linear-gradient(165deg, #F5EBDD 0%, rgba(245, 235, 221, 0.97) 55%, rgba(201, 162, 74, 0.12) 100%);

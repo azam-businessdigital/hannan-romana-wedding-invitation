@@ -42,7 +42,7 @@ export default function App() {
     "Family Invitation",
     "Auspicious Countdown",
     "Nikah Ceremony",
-    "Dawat-e-Walima",
+    "Walima Ceremony",
     "Ceremony Locations",
     "RSVP & Family",
     "Wedding Card",

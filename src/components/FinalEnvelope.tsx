@@ -117,7 +117,7 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
             <div className="pt-1">
               <BismillahCalligraphy className="scale-75 sm:scale-85" />
               <span className="font-cinzel text-[7.5px] tracking-[0.24em] uppercase text-[#641C24] font-bold block mt-1">
-                DAWAT-E-WALIMA
+                WALIMA CEREMONY
               </span>
             </div>
 
