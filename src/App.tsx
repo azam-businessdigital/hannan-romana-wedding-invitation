@@ -16,7 +16,6 @@ import { ShareButton } from './components/ShareButton';
 import { PetalCanvas } from './components/PetalCanvas';
 import { RajasthaniBackground } from './components/RajasthaniBackground';
 import { RajasthaniPageFrame } from './components/Ornaments';
-import { luxuryAudio } from './utils/audioPlayer';
 import { RoyalHaveliEntrance } from './components/RoyalHaveliEntrance';
 
 export default function App() {
@@ -77,7 +76,6 @@ export default function App() {
   const handleProceedFromCover = () => {
     if (!hasStarted) {
       setHasStarted(true);
-      luxuryAudio.play(invitationData.musicUrl);
     }
     setPetalIntensity('celebratory');
     setTimeout(() => setPetalIntensity('gentle'), 4000);
@@ -188,9 +186,7 @@ export default function App() {
       <RajasthaniBackground />
 
       {!entranceDismissed && (
-        <RoyalHaveliEntrance onOpen={() => {
-          luxuryAudio.play(invitationData.musicUrl);
-        }} onOpened={() => setEntranceDismissed(true)} />
+        <RoyalHaveliEntrance onOpened={() => setEntranceDismissed(true)} />
       )}
 
       {/* First visit begins at the carved haveli entrance. */}

@@ -1,21 +1,19 @@
 import { useState } from 'react';
 
 type RoyalHaveliEntranceProps = {
-  onOpen?: () => void;
   onOpened?: () => void;
 };
 
-export function RoyalHaveliEntrance({ onOpen, onOpened }: RoyalHaveliEntranceProps) {
+export function RoyalHaveliEntrance({ onOpened }: RoyalHaveliEntranceProps) {
   const [state, setState] = useState<'closed' | 'opening' | 'opened'>('closed');
 
   const openDoors = () => {
     if (state !== 'closed') return;
     setState('opening');
-    onOpen?.();
     window.setTimeout(() => {
       setState('opened');
-      window.setTimeout(() => onOpened?.(), 350);
-    }, 1800);
+      window.setTimeout(() => onOpened?.(), 250);
+    }, 1300);
   };
 
   return (

@@ -71,7 +71,7 @@ export const invitationData: InvitationConfig = {
   contactPhoneRaw: "919892020228",
 
   // Soothing regal Indian classical / sufi instrumental background melody
-  musicUrl: "https://assets.mixkit.co/music/preview/mixkit-gentle-piano-love-202.mp3",
+  musicUrl: "/assets/audio.mp3",
 
   events: [
     {
