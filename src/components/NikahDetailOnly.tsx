@@ -75,7 +75,7 @@ export const NikahDetailOnly: React.FC<NikahDetailOnlyProps> = ({ data }) => {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: false }}
         transition={{ duration: 0.9, delay: 0.15 }}
-        className="relative z-10 my-auto w-full max-w-sm sm:max-w-md flex flex-col items-center px-3"
+        className="relative z-10 my-auto w-full max-w-sm sm:max-w-md flex flex-col items-center px-1 sm:px-3"
       >
         {/* Quranic Verse */}
         <div className="bg-[#F5EBDD]/80 border border-[#C9A24A]/40 rounded-xl p-2.5 sm:p-3 text-center mb-2.5 w-full shadow-2xs">
@@ -135,10 +135,10 @@ export const NikahDetailOnly: React.FC<NikahDetailOnlyProps> = ({ data }) => {
               <span className="font-cinzel text-[8px] tracking-[0.2em] text-[#C9A24A] uppercase font-bold block">
                 SACRED VENUE
               </span>
-              <p className="font-serif-luxury text-sm sm:text-base font-bold text-[#3A2118] leading-snug">
+              <p className="font-serif-luxury text-sm sm:text-base font-bold text-[#3A2118] leading-snug break-words">
                 {data.nikahVenue}
               </p>
-              <p className="font-sans-body text-[11px] sm:text-[11.5px] text-[#3A2118] leading-tight mt-0.5">
+              <p className="font-sans-body text-[11px] sm:text-[11.5px] text-[#3A2118] leading-tight mt-0.5 break-words">
                 {data.nikahAddress}
               </p>
             </div>

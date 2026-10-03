@@ -592,30 +592,20 @@ export const RajasthaniPageFrame: React.FC<{ className?: string }> = ({ classNam
   >
     <defs>
       <pattern id="rajasthani-page-frame-jali" width="18" height="18" patternUnits="userSpaceOnUse">
-        <path d="M9 1 17 9 9 17 1 9Z" fill="none" stroke="#C9A24A" strokeWidth="1" />
-        <circle cx="9" cy="9" r="1.4" fill="#B9786D" />
+        <path d="M9 1 17 9 9 17 1 9Z" fill="none" stroke="#C9A24A" strokeWidth="1.1" />
+        <circle cx="9" cy="9" r="1.3" fill="#B9786D" />
       </pattern>
     </defs>
-    <rect x="4" y="4" width="492" height="992" fill="none" stroke="#641C24" strokeWidth="8" />
-    <rect x="11" y="11" width="478" height="978" fill="none" stroke="#C9A24A" strokeWidth="1.5" />
-    <rect x="17" y="17" width="466" height="966" fill="none" stroke="url(#rajasthani-page-frame-jali)" strokeWidth="18" />
-    <rect x="28" y="28" width="444" height="944" fill="none" stroke="#641C24" strokeOpacity=".72" strokeWidth="1.5" />
-    {/* Cusped mehrab arch, inset so it frames the content rather than covering it. */}
-    <path d="M31 988V244 C31 220 47 205 69 201 C77 174 98 159 124 158 C139 129 163 117 188 122 C207 91 229 81 250 86 C271 81 293 91 312 122 C337 117 361 129 376 158 C402 159 423 174 431 201 C453 205 469 220 469 244V988" fill="none" stroke="#641C24" strokeWidth="4" />
-    <path d="M38 988V246 C38 225 54 213 75 210 C84 183 104 169 129 168 C145 140 166 130 191 135 C210 104 231 95 250 100 C269 95 290 104 309 135 C334 130 355 140 371 168 C396 169 416 183 425 210 C446 213 462 225 462 246V988" fill="none" stroke="#C9A24A" strokeWidth="1.6" />
-    {/* Slender fluted pilasters and lotus capitals */}
-    {[31, 469].map((x, i) => (
-      <g key={i} stroke="#C9A24A" strokeWidth="1.5" fill="none">
-        <path d={`M${x} 275V915 M${x + (i ? -8 : 8)} 278V910 M${x + (i ? -15 : 15)} 282V904`} />
-        <path d={`M${x - 15} 265h30l-5 10h-20z M${x - 19} 915h38v10h-38z`} fill="#641C24" />
-        <path d={`M${x - 12} 250q12-20 24 0q-12 14-24 0z`} fill="#641C24" />
-      </g>
-    ))}
-    {/* Rosette medallions */}
-    {[[250, 18], [250, 982], [20, 250], [480, 250], [20, 750], [480, 750]].map(([x, y], i) => (
+    {/* Fine jali bands sit close to the edge to preserve the reading area on phones. */}
+    <rect x="4" y="4" width="492" height="992" fill="none" stroke="#641C24" strokeWidth="2" />
+    <rect x="10" y="10" width="480" height="980" fill="none" stroke="#C9A24A" strokeWidth="1.4" />
+    <rect x="16" y="16" width="468" height="968" fill="none" stroke="url(#rajasthani-page-frame-jali)" strokeWidth="7" />
+    <rect x="21" y="21" width="458" height="958" fill="none" stroke="#641C24" strokeOpacity=".75" strokeWidth="1" />
+    {/* Small lotus rosettes decorate the corners without entering the text area. */}
+    {[[20, 20], [480, 20], [20, 980], [480, 980]].map(([x, y], i) => (
       <g key={i} transform={`translate(${x} ${y})`}>
-        <circle r="9" fill="#641C24" stroke="#C9A24A" strokeWidth="2" />
-        <path d="M0-6 2-2 6 0 2 2 0 6-2 2-6 0-2-2Z" fill="#C9A24A" />
+        <circle r="5.5" fill="#641C24" stroke="#C9A24A" strokeWidth="1.3" />
+        <path d="M0-4 1.5-1.5 4 0 1.5 1.5 0 4-1.5 1.5-4 0-1.5-1.5Z" fill="#C9A24A" />
       </g>
     ))}
   </svg>

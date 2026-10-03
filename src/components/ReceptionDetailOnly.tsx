@@ -75,7 +75,7 @@ export const ReceptionDetailOnly: React.FC<ReceptionDetailOnlyProps> = ({ data }
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: false }}
         transition={{ duration: 0.9, delay: 0.15 }}
-        className="relative z-10 my-auto w-full max-w-sm sm:max-w-md flex flex-col items-center px-3"
+        className="relative z-10 my-auto w-full max-w-sm sm:max-w-md flex flex-col items-center px-1 sm:px-3"
       >
         {/* Cordial Invitation Banner */}
         <div className="bg-[#F5EBDD]/80 border border-[#C9A24A]/40 rounded-xl p-2.5 sm:p-3 text-center mb-2.5 w-full shadow-2xs">
@@ -87,16 +87,16 @@ export const ReceptionDetailOnly: React.FC<ReceptionDetailOnlyProps> = ({ data }
         {/* The Grand Reception Card */}
         <div className="w-full bg-[#F5EBDD]/95 border-2 border-[#C9A24A]/60 rounded-2xl p-4 sm:p-5 shadow-[0_4px_20px_rgba(40,20,10,0.08)] flex flex-col gap-3">
           {/* Date & Time Row */}
-          <div className="grid grid-cols-2 gap-2 pb-2.5 border-b border-[#C9A24A]/30">
-            <div className="flex items-start gap-2">
+          <div className="grid grid-cols-1 min-[380px]:grid-cols-2 gap-2 pb-2.5 border-b border-[#C9A24A]/30">
+            <div className="flex min-w-0 items-start gap-2">
               <div className="w-8 h-8 rounded-full bg-[#F5EBDD] border border-[#C9A24A]/60 flex items-center justify-center shrink-0 text-[#641C24]">
                 <Calendar className="w-4 h-4" />
               </div>
-              <div>
+              <div className="min-w-0 flex-1">
                 <span className="font-cinzel text-[8px] tracking-[0.2em] text-[#C9A24A] uppercase font-bold block">
                   DATE
                 </span>
-                <p className="font-serif-luxury text-xs sm:text-[13px] font-bold text-[#3A2118] leading-tight">
+                <p className="font-serif-luxury text-xs sm:text-[13px] font-bold text-[#3A2118] leading-tight break-words">
                   {data.receptionDay}
                 </p>
                 <p className="font-cinzel text-[10px] sm:text-[11px] font-semibold text-[#641C24]">
@@ -109,11 +109,11 @@ export const ReceptionDetailOnly: React.FC<ReceptionDetailOnlyProps> = ({ data }
               <div className="w-8 h-8 rounded-full bg-[#F5EBDD] border border-[#C9A24A]/60 flex items-center justify-center shrink-0 text-[#641C24]">
                 <Clock className="w-4 h-4" />
               </div>
-              <div>
+              <div className="min-w-0 flex-1">
                 <span className="font-cinzel text-[8px] tracking-[0.2em] text-[#C9A24A] uppercase font-bold block">
                   TIME
                 </span>
-                <p className="font-serif-luxury text-xs sm:text-[13px] font-bold text-[#3A2118] leading-tight">
+                <p className="font-serif-luxury text-xs sm:text-[13px] font-bold text-[#3A2118] leading-tight break-words">
                   {data.receptionTime}
                 </p>
                 <p className="font-cormorant italic text-[11px] text-[#3A2118]">
@@ -132,10 +132,10 @@ export const ReceptionDetailOnly: React.FC<ReceptionDetailOnlyProps> = ({ data }
               <span className="font-cinzel text-[8px] tracking-[0.2em] text-[#C9A24A] uppercase font-bold block">
                 RECEPTION BANQUET VENUE
               </span>
-              <p className="font-serif-luxury text-sm sm:text-base font-bold text-[#3A2118] leading-snug">
+              <p className="font-serif-luxury text-sm sm:text-base font-bold text-[#3A2118] leading-snug break-words">
                 {data.receptionVenue}
               </p>
-              <p className="font-sans-body text-[11px] sm:text-[11.5px] text-[#3A2118] leading-tight mt-0.5">
+              <p className="font-sans-body text-[11px] sm:text-[11.5px] text-[#3A2118] leading-tight mt-0.5 break-words">
                 {data.receptionAddress}
               </p>
             </div>

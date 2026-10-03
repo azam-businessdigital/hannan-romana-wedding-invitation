@@ -222,7 +222,7 @@ export default function App() {
 
       {/* CENTRAL DIGITAL INVITATION BOOK CONTAINER (430px - 500px on desktop) */}
       <main className="relative w-full h-[100dvh] max-w-[480px] md:max-w-[500px] mx-auto shadow-[0_25px_80px_rgba(83,35,30,0.3)] rounded-none sm:rounded-2xl overflow-hidden flex flex-col justify-center">
-        {/* Rajasthani jali and cusped mehrab frame */}
+        {/* Slim Rajasthani jali frame */}
         <RajasthaniPageFrame className="absolute inset-0 z-30 h-full w-full" />
 
         <AnimatePresence mode="wait" custom={direction}>
@@ -300,12 +300,14 @@ export default function App() {
           </motion.div>
         </AnimatePresence>
 
-        <img
-          src="/assets/rajasthani-wildlife-border.png"
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute bottom-0 left-0 z-20 h-[125px] w-full object-cover object-bottom opacity-90"
-        />
+        {currentPage === 0 && (
+          <img
+            src="/assets/rajasthani-wildlife-border.png"
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute bottom-0 left-0 z-20 h-[clamp(72px,14vh,125px)] w-full object-cover object-bottom opacity-90"
+          />
+        )}
       </main>
 
       {/* FLOATING BOTTOM PAGE-TURNING CONTROLS */}
