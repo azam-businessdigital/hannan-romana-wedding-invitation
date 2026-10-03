@@ -17,10 +17,12 @@ import { PetalCanvas } from './components/PetalCanvas';
 import { RajasthaniBackground } from './components/RajasthaniBackground';
 import { RajasthaniPageFrame } from './components/Ornaments';
 import { luxuryAudio } from './utils/audioPlayer';
+import { RoyalHaveliEntrance } from './components/RoyalHaveliEntrance';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
+  const [entranceDismissed, setEntranceDismissed] = useState(false);
   const [direction, setDirection] = useState<'forward' | 'backward'>('forward');
   const [petalIntensity, setPetalIntensity] = useState<'gentle' | 'celebratory'>('gentle');
   const touchStartY = useRef<number | null>(null);
@@ -184,6 +186,12 @@ export default function App() {
     >
       {/* Authentic Rajasthani architectural background: palace arcade arches, traditional mandalas, and jali screen */}
       <RajasthaniBackground />
+
+      {!entranceDismissed && (
+        <RoyalHaveliEntrance onOpen={() => {
+          luxuryAudio.play(invitationData.musicUrl);
+        }} onOpened={() => setEntranceDismissed(true)} />
+      )}
 
       {/* First visit begins at the carved haveli entrance. */}
 
