@@ -26,7 +26,7 @@ export const InvitationCover: React.FC<InvitationCoverProps> = ({
   onProceed
 }) => {
   return (
-    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-between p-4 sm:p-6 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-20">
+    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-center gap-6 p-4 sm:p-6 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-20">
       {/* Subtle Rajasthani jali lattice texture & gold star dust */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-15 mix-blend-multiply bg-rajasthani-jali"
@@ -59,7 +59,7 @@ export const InvitationCover: React.FC<InvitationCoverProps> = ({
         initial={{ opacity: 0, scale: 0.92 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 my-auto py-2 px-3 flex flex-col items-center text-center max-w-sm sm:max-w-md w-full"
+        className="relative z-10 py-2 px-3 flex flex-col items-center text-center max-w-sm sm:max-w-md w-full"
       >
         {/* Palace Lanterns Hanging */}
         <div className="flex items-center justify-between w-48 sm:w-56 mb-2">

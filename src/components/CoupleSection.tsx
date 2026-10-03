@@ -4,8 +4,7 @@ import { Sparkles, Heart } from 'lucide-react';
 import { InvitationConfig } from '../types';
 import {
   FloralCorner,
-  FloralDivider,
-  RajasthaniElephant
+  FloralDivider
 } from './Ornaments';
 
 interface CoupleSectionProps {
@@ -21,7 +20,7 @@ interface CoupleSectionProps {
  */
 export const CoupleSection: React.FC<CoupleSectionProps> = ({ data }) => {
   return (
-    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-between p-3.5 sm:p-5 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-20">
+    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-center gap-3 p-3.5 sm:p-5 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-20">
       {/* Subtle Rajasthani jali lattice texture & grain */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-15 mix-blend-multiply bg-rajasthani-jali"
@@ -86,7 +85,7 @@ export const CoupleSection: React.FC<CoupleSectionProps> = ({ data }) => {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: false }}
         transition={{ duration: 1.0, delay: 0.15 }}
-        className="relative z-10 my-auto flex flex-col items-center text-center px-3 max-w-sm sm:max-w-md w-full py-1"
+        className="relative z-10 flex flex-col items-center text-center px-3 max-w-sm sm:max-w-md w-full py-1"
       >
         <p className="font-cormorant text-xs sm:text-[13px] italic text-[#3A2118] max-w-xs mb-2">
           We cordially invite you to celebrate the joyous Walima ceremony of our grandson.
@@ -139,7 +138,7 @@ export const CoupleSection: React.FC<CoupleSectionProps> = ({ data }) => {
         </div>
       </motion.div>
 
-      {/* Bottom Section: Auspicious Royal Elephants with clearance from bottom navigation */}
+      {/* Bottom Section: clearance from bottom navigation */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -148,10 +147,6 @@ export const CoupleSection: React.FC<CoupleSectionProps> = ({ data }) => {
         className="relative z-10 w-full max-w-sm pb-8 sm:pb-9 flex flex-col items-center"
       >
         <FloralDivider className="w-40 sm:w-48 text-[#C9A24A] opacity-75 mb-1" />
-        <div className="flex items-center justify-center gap-12">
-          <RajasthaniElephant className="w-10 h-7 text-[#C9A24A] opacity-80" />
-          <RajasthaniElephant className="w-10 h-7 text-[#C9A24A] opacity-80" mirrored />
-        </div>
       </motion.div>
     </div>
   );

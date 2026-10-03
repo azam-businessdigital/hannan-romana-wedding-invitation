@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Calendar, Clock, MapPin, Navigation, Sparkles } from 'lucide-react';
 import { InvitationConfig } from '../types';
-import { FloralCorner, FloralDivider, RajasthaniElephant } from './Ornaments';
+import { FloralCorner, FloralDivider } from './Ornaments';
 
 interface ReceptionDetailOnlyProps {
   data: InvitationConfig;
@@ -15,7 +15,7 @@ interface ReceptionDetailOnlyProps {
  */
 export const ReceptionDetailOnly: React.FC<ReceptionDetailOnlyProps> = ({ data }) => {
   return (
-    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-between p-3.5 sm:p-5 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-20">
+    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-center gap-3 p-3.5 sm:p-5 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-20">
       <img
         src="/assets/walima-ceremony-artwork.png"
         alt=""
@@ -75,7 +75,7 @@ export const ReceptionDetailOnly: React.FC<ReceptionDetailOnlyProps> = ({ data }
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: false }}
         transition={{ duration: 0.9, delay: 0.15 }}
-        className="relative z-10 my-auto w-full max-w-sm sm:max-w-md flex flex-col items-center px-1 sm:px-3"
+        className="relative z-10 w-full max-w-sm sm:max-w-md flex flex-col items-center px-1 sm:px-3"
       >
         {/* Cordial Invitation Banner */}
         <div className="bg-[#F5EBDD]/80 border border-[#C9A24A]/40 rounded-xl p-2.5 sm:p-3 text-center mb-2.5 w-full shadow-2xs">
@@ -166,12 +166,10 @@ export const ReceptionDetailOnly: React.FC<ReceptionDetailOnlyProps> = ({ data }
         className="relative z-10 w-full max-w-sm pb-8 sm:pb-9 flex flex-col items-center text-center"
       >
         <FloralDivider className="w-40 sm:w-48 text-[#C9A24A] opacity-75 mb-1" />
-        <div className="flex items-center justify-between w-48 sm:w-56">
-          <RajasthaniElephant className="w-10 h-7 text-[#C9A24A] opacity-80" />
+        <div className="flex items-center justify-center">
           <span className="font-cinzel text-[8px] tracking-[0.25em] text-[#C9A24A] uppercase font-semibold">
             DAWAT-E-WALIMA
           </span>
-          <RajasthaniElephant className="w-10 h-7 text-[#C9A24A] opacity-80" mirrored />
         </div>
       </motion.div>
     </div>

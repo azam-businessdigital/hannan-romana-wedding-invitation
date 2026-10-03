@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { FloralCorner, FloralDivider, PalaceLantern, RajasthaniElephant } from './Ornaments';
+import { FloralCorner, FloralDivider, PalaceLantern } from './Ornaments';
 import { InvitationConfig } from '../types';
 
 interface InvitationMessageProps {
@@ -113,7 +113,7 @@ export const InvitationMessage: React.FC<InvitationMessageProps> = ({ data }) =>
         </div>
       </motion.div>
 
-      {/* Symmetrical Palace Lanterns with Elephants at Bottom Corners */}
+      {/* Symmetrical Palace Lanterns */}
       <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 z-15">
         <PalaceLantern size="sm" />
       </div>
@@ -121,7 +121,7 @@ export const InvitationMessage: React.FC<InvitationMessageProps> = ({ data }) =>
         <PalaceLantern size="sm" />
       </div>
 
-      {/* Bottom Footer Note with Elephants */}
+      {/* Bottom footer note */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -129,11 +129,9 @@ export const InvitationMessage: React.FC<InvitationMessageProps> = ({ data }) =>
         transition={{ duration: 1.0, delay: 0.5 }}
         className="relative z-10 pb-4 sm:pb-6 flex items-center justify-center gap-2"
       >
-        <RajasthaniElephant className="w-5 h-4 text-[#C9A24A]" />
         <span className="font-cinzel text-[9px] sm:text-[10px] tracking-[0.25em] uppercase text-[#3A2118] font-bold whitespace-nowrap">
           Chowhan &amp; Gehlot Families • Sikar, Rajasthan
         </span>
-        <RajasthaniElephant className="w-5 h-4 text-[#C9A24A]" mirrored={true} />
       </motion.div>
     </div>
   );

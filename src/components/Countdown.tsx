@@ -51,7 +51,7 @@ export const Countdown: React.FC<CountdownProps> = ({ targetDate, displayDate })
   ];
 
   return (
-    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-between p-4 sm:p-7 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-20">
+    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-center gap-3 p-4 sm:p-7 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-20">
       {/* Subtle Rajasthani jali lattice pattern & grain */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-15 mix-blend-multiply bg-rajasthani-jali"
@@ -91,7 +91,7 @@ export const Countdown: React.FC<CountdownProps> = ({ targetDate, displayDate })
       </motion.div>
 
       {/* Center Countdown Unit */}
-      <div className="relative z-10 my-auto flex flex-col items-center text-center px-4 max-w-sm sm:max-w-md w-full">
+      <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-sm sm:max-w-md w-full">
         <motion.h2
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}

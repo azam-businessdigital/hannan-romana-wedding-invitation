@@ -228,6 +228,14 @@ export default function App() {
         {/* Slim Rajasthani jali frame */}
         <RajasthaniPageFrame className="absolute inset-0 z-30 h-full w-full" />
 
+        {/* Shared wildlife border anchored to the foot of every slide. */}
+        <img
+          src="/assets/rajasthani-wildlife-border.png"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-0 left-0 z-20 h-[clamp(72px,14vh,125px)] w-full object-cover object-bottom opacity-90 select-none"
+        />
+
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={currentPage}
@@ -305,15 +313,6 @@ export default function App() {
             {currentPage === 8 && <ThankYou data={invitationData} />}
           </motion.div>
         </AnimatePresence>
-
-        {currentPage === 0 && (
-          <img
-            src="/assets/rajasthani-wildlife-border.png"
-            alt=""
-            aria-hidden="true"
-            className="pointer-events-none absolute bottom-0 left-0 z-20 h-[clamp(72px,14vh,125px)] w-full object-cover object-bottom opacity-90"
-          />
-        )}
       </main>
 
       {/* FLOATING BOTTOM PAGE-TURNING CONTROLS */}

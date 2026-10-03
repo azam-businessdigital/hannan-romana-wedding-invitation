@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Phone, MessageCircle } from 'lucide-react';
 import { InvitationConfig } from '../types';
-import { FloralCorner, FloralDivider, RajasthaniMehrabArch, RajasthaniElephant } from './Ornaments';
+import { FloralCorner, FloralDivider, RajasthaniMehrabArch } from './Ornaments';
 
 interface FamilySectionProps {
   data: InvitationConfig;
@@ -12,7 +12,7 @@ export const FamilySection: React.FC<FamilySectionProps> = ({ data }) => {
   const whatsappUrl = `https://api.whatsapp.com/send?phone=${data.contactPhoneRaw}&text=${encodeURIComponent(`Assalamu Alaikum Ataul Rehman Bhai, hearty congratulations on the wedding of Abdul Hannan & Dr. Romana Bano!`)}`;
 
   return (
-    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-between p-3.5 sm:p-6 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-20">
+    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-center gap-3 p-3.5 sm:p-6 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-20">
       {/* Subtle Rajasthani jali lattice texture & grain */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-15 mix-blend-multiply bg-rajasthani-jali"
@@ -52,7 +52,7 @@ export const FamilySection: React.FC<FamilySectionProps> = ({ data }) => {
       </motion.div>
 
       {/* Center Family Greetings & Lineage Cards */}
-      <div className="relative z-10 my-auto flex flex-col items-center text-center px-3 max-w-sm sm:max-w-md w-full">
+      <div className="relative z-10 flex flex-col items-center text-center px-3 max-w-sm sm:max-w-md w-full">
         {/* Grandparents Tribute Box (Strictly single-line typography) */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -133,7 +133,7 @@ export const FamilySection: React.FC<FamilySectionProps> = ({ data }) => {
         </motion.div>
       </div>
 
-      {/* Bottom Footer Note with Elephants */}
+      {/* Bottom footer note */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -141,11 +141,9 @@ export const FamilySection: React.FC<FamilySectionProps> = ({ data }) => {
         transition={{ duration: 1.0, delay: 0.5 }}
         className="relative z-10 pb-4 sm:pb-6 flex items-center justify-center gap-2 text-center px-4"
       >
-        <RajasthaniElephant className="w-4 h-3.5 text-[#C9A24A]" />
         <span className="font-cinzel text-[9.5px] sm:text-[10px] tracking-[0.2em] uppercase text-[#3A2118] font-semibold">
           {data.compliments}
         </span>
-        <RajasthaniElephant className="w-4 h-3.5 text-[#C9A24A]" mirrored={true} />
       </motion.div>
     </div>
   );

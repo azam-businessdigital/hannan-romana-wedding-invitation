@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, Phone, MessageCircle, Navigation, Share2, Sparkles, Heart } from 'lucide-react';
 import { InvitationConfig } from '../types';
-import { FloralCorner, FloralDivider, BismillahCalligraphy, RajasthaniElephant, PalaceLantern } from './Ornaments';
+import { FloralCorner, FloralDivider, BismillahCalligraphy, PalaceLantern } from './Ornaments';
 import { getGoogleCalendarUrl } from '../utils/calendar';
 
 interface FinalEnvelopeProps {
@@ -50,7 +50,7 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
   const whatsappUrl = `https://api.whatsapp.com/send?phone=${data.contactPhoneRaw}&text=${encodeURIComponent(`Assalamu Alaikum Ataul Rehman Bhai, hearty congratulations on the wedding of Abdul Hannan & Dr. Romana Bano!`)}`;
 
   return (
-    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-between p-3.5 sm:p-5 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-20">
+    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-center gap-3 p-3.5 sm:p-5 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-20">
       {/* Subtle Rajasthani jali lattice texture & grain */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-15 mix-blend-multiply bg-rajasthani-jali"
@@ -100,7 +100,7 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
       </motion.div>
 
       {/* CENTER STAGE: 3D FOLDING WEDDING CARD */}
-      <div className="relative z-10 my-auto w-full max-w-sm sm:max-w-md flex flex-col items-center justify-center px-2 py-1">
+      <div className="relative z-10 w-full max-w-sm sm:max-w-md flex flex-col items-center justify-center px-2 py-1">
         <div 
           className="wedding-card-shell relative w-full max-w-[360px] sm:max-w-[400px] h-[min(66dvh,520px)] min-h-[390px] sm:h-[min(64dvh,560px)] sm:min-h-[460px] rounded-2xl shadow-[0_16px_40px_rgba(58,33,24,0.24)] bg-gradient-to-br from-[#F5EBDD] via-[#F5EBDD] to-[#B9786D]/30 border-2 border-[#641C24] flex items-center justify-center overflow-hidden"
           style={{ perspective: '1200px' }}
@@ -272,10 +272,6 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
               </span>
             </div>
 
-            {/* Bottom Flap Hint */}
-            <div className="pb-1 text-center">
-              <RajasthaniElephant className="w-6 h-4 text-[#C9A24A] opacity-70" />
-            </div>
           </motion.div>
 
           {/* ======================================================== */}
@@ -327,10 +323,6 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
               </span>
             </div>
 
-            {/* Bottom Flap Hint */}
-            <div className="pb-1 text-center">
-              <RajasthaniElephant className="w-6 h-4 text-[#C9A24A] opacity-70" mirrored />
-            </div>
           </motion.div>
 
           {/* ======================================================== */}
@@ -372,7 +364,7 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
         </div>
       </div>
 
-      {/* Bottom Footer Note with Elephants */}
+      {/* Bottom footer note */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -380,11 +372,9 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
         transition={{ duration: 1.0, delay: 0.3 }}
         className="relative z-10 pb-8 sm:pb-9 flex items-center justify-center gap-2 text-center px-4"
       >
-        <RajasthaniElephant className="w-4 h-3.5 text-[#C9A24A]" />
         <span className="font-cinzel text-[9px] sm:text-[9.5px] tracking-[0.2em] uppercase text-[#3A2118] font-semibold">
           {data.compliments}
         </span>
-        <RajasthaniElephant className="w-4 h-3.5 text-[#C9A24A]" mirrored />
       </motion.div>
     </div>
   );

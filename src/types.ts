@@ -74,9 +74,9 @@ export interface InvitationConfig {
   compliments: string;
   closingBlessing: string;
   contactPerson: string; // "Ataul Rehman Chowhan"
-  contactPhone: string; // "+91 98331 89803"
-  contactPhoneCall: string; // "+919833189803"
-  contactPhoneRaw: string; // "919833189803"
+  contactPhone: string; // "+91 9892020228"
+  contactPhoneCall: string; // "+919892020228"
+  contactPhoneRaw: string; // "919892020228"
   musicUrl: string;
   events: WeddingEvent[];
 }

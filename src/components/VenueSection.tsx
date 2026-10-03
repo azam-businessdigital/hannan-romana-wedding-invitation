@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { ExternalLink, Navigation, MapPin } from 'lucide-react';
 import { InvitationConfig } from '../types';
-import { FloralCorner, FloralDivider, RajasthaniMehrabArch, RajasthaniElephant } from './Ornaments';
+import { FloralCorner, FloralDivider, RajasthaniMehrabArch } from './Ornaments';
 
 interface VenueSectionProps {
   data: InvitationConfig;
@@ -30,7 +30,7 @@ export const VenueSection: React.FC<VenueSectionProps> = ({ data }) => {
   };
 
   return (
-    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-between p-3.5 sm:p-6 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-20">
+    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-center gap-3 p-3.5 sm:p-6 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-20">
       {/* Subtle Rajasthani jali lattice texture & grain */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-15 mix-blend-multiply bg-rajasthani-jali"
@@ -76,7 +76,7 @@ export const VenueSection: React.FC<VenueSectionProps> = ({ data }) => {
       </motion.div>
 
       {/* Center Venue Card & Switcher (With generous padding from stone border) */}
-      <div className="relative z-10 my-auto w-full max-w-sm sm:max-w-md flex flex-col items-center text-center px-4 sm:px-6">
+      <div className="relative z-10 w-full max-w-sm sm:max-w-md flex flex-col items-center text-center px-4 sm:px-6">
         {/* Venue Selector Tabs */}
         <div className="flex items-center gap-1.5 p-1 rounded-full bg-[#F5EBDD] border border-[#B9786D]/60 mb-3 shadow-2xs">
           <button
@@ -163,7 +163,7 @@ export const VenueSection: React.FC<VenueSectionProps> = ({ data }) => {
         </motion.div>
       </div>
 
-      {/* Bottom Note with Elephants */}
+      {/* Bottom note */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -171,11 +171,9 @@ export const VenueSection: React.FC<VenueSectionProps> = ({ data }) => {
         transition={{ duration: 1.0, delay: 0.5 }}
         className="relative z-10 pb-4 sm:pb-6 flex items-center justify-center gap-2 text-center px-4"
       >
-        <RajasthaniElephant className="w-4 h-3.5 text-[#C9A24A]" />
         <span className="font-cinzel text-[10px] tracking-[0.25em] uppercase text-[#3A2118] font-bold">
           RSVP: {data.contactPerson} • {data.contactPhone}
         </span>
-        <RajasthaniElephant className="w-4 h-3.5 text-[#C9A24A]" mirrored={true} />
       </motion.div>
     </div>
   );

@@ -15,7 +15,7 @@ interface NikahDetailOnlyProps {
  */
 export const NikahDetailOnly: React.FC<NikahDetailOnlyProps> = ({ data }) => {
   return (
-    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-between p-3.5 sm:p-5 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-20">
+    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-center gap-3 p-3.5 sm:p-5 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-20">
       <img
         src="/assets/nikah-ceremony-artwork.png"
         alt=""
@@ -75,7 +75,7 @@ export const NikahDetailOnly: React.FC<NikahDetailOnlyProps> = ({ data }) => {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: false }}
         transition={{ duration: 0.9, delay: 0.15 }}
-        className="relative z-10 my-auto w-full max-w-sm sm:max-w-md flex flex-col items-center px-1 sm:px-3"
+        className="relative z-10 w-full max-w-sm sm:max-w-md flex flex-col items-center px-1 sm:px-3"
       >
         {/* Quranic Verse */}
         <div className="bg-[#F5EBDD]/80 border border-[#C9A24A]/40 rounded-xl p-2.5 sm:p-3 text-center mb-2.5 w-full shadow-2xs">

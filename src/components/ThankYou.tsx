@@ -1,14 +1,14 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { InvitationConfig } from '../types';
-import { FloralDivider, PalaceLantern, RajasthaniElephant } from './Ornaments';
+import { FloralDivider, PalaceLantern } from './Ornaments';
 
 interface ThankYouProps {
   data: InvitationConfig;
 }
 
 export const ThankYou: React.FC<ThankYouProps> = ({ data }) => (
-  <div className="relative flex h-full min-h-[100dvh] w-full flex-col items-center justify-center overflow-y-auto px-6 py-20 text-center text-[#3A2118] paper-emboss">
+  <div className="relative flex h-full min-h-[100dvh] w-full flex-col items-center justify-center overflow-y-auto px-6 py-12 text-center text-[#3A2118] paper-emboss">
     <div className="absolute inset-0 pointer-events-none bg-rajasthani-jali opacity-10" />
 
     <motion.div
@@ -36,10 +36,6 @@ export const ThankYou: React.FC<ThankYouProps> = ({ data }) => (
         {data.groomFullName} &amp; {data.bride}
       </p>
       <FloralDivider className="mt-5 w-48 text-[#C9A24A]" />
-      <div className="mt-6 flex items-center justify-center gap-10">
-        <RajasthaniElephant className="h-8 w-12 text-[#C9A24A] opacity-80" />
-        <RajasthaniElephant className="h-8 w-12 text-[#C9A24A] opacity-80" mirrored />
-      </div>
     </motion.div>
   </div>
 );

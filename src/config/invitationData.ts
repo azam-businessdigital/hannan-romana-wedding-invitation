@@ -66,9 +66,9 @@ export const invitationData: InvitationConfig = {
   compliments: "With best compliments from Chowhan & Gehlot Family & Relatives",
   closingBlessing: "Your gracious presence and blessings will make our celebration truly special.",
   contactPerson: "Ataul Rehman Chowhan",
-  contactPhone: "+91 98331 89803",
-  contactPhoneCall: "+919833189803",
-  contactPhoneRaw: "919833189803",
+  contactPhone: "+91 9892020228",
+  contactPhoneCall: "+919892020228",
+  contactPhoneRaw: "919892020228",
 
   // Soothing regal Indian classical / sufi instrumental background melody
   musicUrl: "https://assets.mixkit.co/music/preview/mixkit-gentle-piano-love-202.mp3",

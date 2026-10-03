@@ -360,47 +360,6 @@ export const RoyalPalaceBalustrade: React.FC<{ className?: string }> = ({ classN
   );
 };
 
-// Auspicious Rajasthani Royal Elephant (Carved Stone / Heritage Motif)
-export const RajasthaniElephant: React.FC<{
-  className?: string;
-  mirrored?: boolean;
-}> = ({
-  className = "w-10 h-8 text-[#C9A24A]",
-  mirrored = false
-}) => {
-  return (
-    <svg
-      viewBox="0 0 60 45"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={`pointer-events-none select-none ${className}`}
-      style={{ transform: mirrored ? 'scale(-1, 1)' : 'none' }}
-      aria-hidden="true"
-    >
-      <g stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.9">
-        {/* Elephant body silhouette */}
-        <path
-          d="M 12 36 L 12 28 C 12 25, 14 24, 18 24 C 20 24, 22 25, 22 28 L 22 36
-             M 28 36 L 28 29 C 28 26, 32 25, 36 25 C 38 25, 40 26, 40 30 L 40 36
-             M 12 28 C 10 26, 8 22, 9 18 C 11 12, 18 10, 26 10 C 34 10, 42 12, 44 17 C 46 22, 45 28, 40 30
-             M 9 18 C 6 20, 4 25, 5 30 C 5.5 33, 7 32, 7 29 C 7 26, 9 24, 11 24"
-        />
-        {/* Raised trunk tip (auspicious greeting / shubh aashirwad) */}
-        <path d="M 5 30 C 3 28, 2 24, 5 21 C 7 19, 8 20, 7 22" fill="currentColor" fillOpacity="0.2" />
-        {/* Royal Decorated Saddle Cloth (Jhool) with Rajasthani lotus */}
-        <rect x="20" y="14" width="16" height="11" rx="2" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="0.8" />
-        <circle cx="28" cy="19.5" r="2" fill="currentColor" fillOpacity="0.5" />
-        <path d="M 20 25 L 36 25" strokeDasharray="1.5 1.5" />
-        {/* Royal Tusk */}
-        <path d="M 10 23 C 12 23, 14 24, 14 26" strokeWidth="1.2" stroke="#F5EBDD" />
-        {/* Head ornament (Matha Tikka) */}
-        <circle cx="15" cy="14" r="1.2" fill="currentColor" />
-        <circle cx="13" cy="16" r="0.8" fill="currentColor" />
-      </g>
-    </svg>
-  );
-};
-
 // Symmetrical Rajasthani floral corner ornament (Pietra Dura marble inlay style)
 export const FloralCorner: React.FC<{ className?: string; position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' }> = ({
   className = "w-16 h-16 text-[#C9A24A]",
@@ -584,29 +543,26 @@ export const WaxSeal: React.FC<{
 
 /** Rajasthani haveli inspired jali frame for the invitation edges. */
 export const RajasthaniPageFrame: React.FC<{ className?: string }> = ({ className = '' }) => (
-  <svg
-    viewBox="0 0 500 1000"
-    preserveAspectRatio="none"
-    className={`pointer-events-none select-none ${className}`}
-    aria-hidden="true"
-  >
-    <defs>
-      <pattern id="rajasthani-page-frame-jali" width="18" height="18" patternUnits="userSpaceOnUse">
-        <path d="M9 1 17 9 9 17 1 9Z" fill="none" stroke="#C9A24A" strokeWidth="1.1" />
-        <circle cx="9" cy="9" r="1.3" fill="#B9786D" />
-      </pattern>
-    </defs>
-    {/* Fine jali bands sit close to the edge to preserve the reading area on phones. */}
-    <rect x="4" y="4" width="492" height="992" fill="none" stroke="#641C24" strokeWidth="2" />
-    <rect x="10" y="10" width="480" height="980" fill="none" stroke="#C9A24A" strokeWidth="1.4" />
-    <rect x="16" y="16" width="468" height="968" fill="none" stroke="url(#rajasthani-page-frame-jali)" strokeWidth="7" />
-    <rect x="21" y="21" width="458" height="958" fill="none" stroke="#641C24" strokeOpacity=".75" strokeWidth="1" />
-    {/* Small lotus rosettes decorate the corners without entering the text area. */}
-    {[[20, 20], [480, 20], [20, 980], [480, 980]].map(([x, y], i) => (
-      <g key={i} transform={`translate(${x} ${y})`}>
-        <circle r="5.5" fill="#641C24" stroke="#C9A24A" strokeWidth="1.3" />
-        <path d="M0-4 1.5-1.5 4 0 1.5 1.5 0 4-1.5 1.5-4 0-1.5-1.5Z" fill="#C9A24A" />
-      </g>
-    ))}
-  </svg>
+  <div className={`pointer-events-none select-none ${className}`} aria-hidden="true">
+    <svg viewBox="0 0 500 1000" preserveAspectRatio="none" className="absolute inset-0 h-full w-full">
+      <defs>
+        <pattern id="rajasthani-page-frame-jali" width="18" height="18" patternUnits="userSpaceOnUse">
+          <path d="M9 1 17 9 9 17 1 9Z" fill="none" stroke="#C9A24A" strokeWidth="1.1" />
+          <circle cx="9" cy="9" r="1.3" fill="#B9786D" />
+        </pattern>
+      </defs>
+      {/* Fine jali bands and double edging, kept close to the page perimeter. */}
+      <rect x="4" y="4" width="492" height="992" fill="none" stroke="#641C24" strokeWidth="2" />
+      <rect x="10" y="10" width="480" height="980" fill="none" stroke="#C9A24A" strokeWidth="1.4" />
+      <rect x="16" y="16" width="468" height="968" fill="none" stroke="url(#rajasthani-page-frame-jali)" strokeWidth="7" />
+      <rect x="21" y="21" width="458" height="958" fill="none" stroke="#641C24" strokeOpacity=".75" strokeWidth="1" />
+      {/* Small lotus rosettes decorate the corners without entering the text area. */}
+      {[[20, 20], [480, 20], [20, 980], [480, 980]].map(([x, y], i) => (
+        <g key={i} transform={`translate(${x} ${y})`}>
+          <circle r="5.5" fill="#641C24" stroke="#C9A24A" strokeWidth="1.3" />
+          <path d="M0-4 1.5-1.5 4 0 1.5 1.5 0 4-1.5 1.5-4 0-1.5-1.5Z" fill="#C9A24A" />
+        </g>
+      ))}
+    </svg>
+  </div>
 );

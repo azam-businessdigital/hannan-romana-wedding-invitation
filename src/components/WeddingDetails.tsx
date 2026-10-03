@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Calendar, MapPin, Sparkles, Navigation } from 'lucide-react';
 import { InvitationConfig } from '../types';
-import { FloralCorner, FloralDivider, RajasthaniMehrabArch, RajasthaniElephant } from './Ornaments';
+import { FloralCorner, FloralDivider, RajasthaniMehrabArch } from './Ornaments';
 
 interface WeddingDetailsProps {
   data: InvitationConfig;
@@ -153,7 +153,7 @@ export const WeddingDetails: React.FC<WeddingDetailsProps> = ({ data }) => {
         </motion.div>
       </div>
 
-      {/* Bottom Footer Note with Elephants */}
+      {/* Bottom footer note */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -165,11 +165,9 @@ export const WeddingDetails: React.FC<WeddingDetailsProps> = ({ data }) => {
           &ldquo;{data.closingBlessing}&rdquo;
         </span>
         <div className="flex items-center gap-2 mt-1">
-          <RajasthaniElephant className="w-4 h-3.5 text-[#C9A24A]" />
           <span className="font-cinzel text-[9px] sm:text-[10px] tracking-[0.25em] uppercase text-[#3A2118] font-bold">
             RSVP: {data.contactPerson} ({data.contactPhone})
           </span>
-          <RajasthaniElephant className="w-4 h-3.5 text-[#C9A24A]" mirrored={true} />
         </div>
       </motion.div>
     </div>
