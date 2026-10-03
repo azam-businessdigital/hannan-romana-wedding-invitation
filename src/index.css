@@ -3,7 +3,7 @@
 @layer base {
   :root {
     --font-serif: 'Cormorant Garamond', Georgia, serif;
-    --font-display: 'Cinzel', 'Bodoni Moda', 'Cormorant Garamond', Georgia, serif;
+    --font-display: 'Bodoni Moda', 'Cinzel', 'Cormorant Garamond', Georgia, serif;
     --font-script: 'Great Vibes', cursive;
     --font-cinzel: 'Cinzel', serif;
     --font-sans: 'Montserrat', sans-serif;
@@ -64,7 +64,7 @@
 
 .font-serif-luxury {
   font-family: var(--font-display);
-  letter-spacing: 0.025em;
+  letter-spacing: 0.035em;
 }
 
 .font-sans-body {
