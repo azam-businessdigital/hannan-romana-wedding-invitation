@@ -37,9 +37,9 @@ export const invitationData: InvitationConfig = {
 
   // Reception (Grand Celebratory Banquet)
   receptionDate: "2026-11-15",
-  receptionDisplayDate: "15th November 2026",
+  receptionDisplayDate: "15th November 2026 • 5th Jumadil Aakhirah, 1448 Hijri",
   receptionDay: "Sunday",
-  receptionTime: "7:00 PM Onwards",
+  receptionTime: "After Namaz-e-Magrib",
   receptionVenue: "Mohalla Hussain Gunj",
   receptionAddress: "Mohalla Hussain Gunj, Sikar, Rajasthan – 332001",
   receptionCity: "Sikar, Rajasthan",
@@ -47,9 +47,9 @@ export const invitationData: InvitationConfig = {
 
   // Nikah Ceremony
   nikahDate: "2026-11-14",
-  nikahDisplayDate: "14th November 2026",
+  nikahDisplayDate: "14th November 2026 • 4th Jumadil Aakhirah, 1448 Hijri",
   nikahDay: "Saturday",
-  nikahTime: "11:00 AM Onwards",
+  nikahTime: "After Namaz-e-Magrib",
   nikahVenue: "Madrare-Rahmat, Anjuman Moholla",
   nikahAddress: "Madrare-Rahmat, Anjuman Moholla, Behind Iddgah Masjid, Near Todi College, Laxmangarh, Sikar, Rajasthan – 332311",
   nikahCity: "Laxmangarh, Sikar, Rajasthan",
@@ -68,7 +68,14 @@ export const invitationData: InvitationConfig = {
   contactPerson: "Ataul Rehman Chowhan",
   contactPhone: "+91 9892020228",
   contactPhoneCall: "+919892020228",
-  contactPhoneRaw: "919892020228",
+  contactPhoneRaw: "919892020228",  rsvpNames: [
+    "Atiqur Rehman",
+    "Abul Ala",
+    "Abul Khair",
+    "Abul Lais",
+    "Abul Hasan",
+    "Mohammed Zaheeruddin"
+  ],
 
   // Soothing regal Indian classical / sufi instrumental background melody
   musicUrl: "/assets/audio.mp3",
@@ -78,7 +85,7 @@ export const invitationData: InvitationConfig = {
       title: "NIKAH CEREMONY",
       subtitle: "Sacred Solemnization of Marriage",
       dateStr: "14th November 2026 • Saturday",
-      time: "11:00 AM Onwards",
+      time: "After Namaz-e-Magrib",
       venueName: "Madrare-Rahmat, Anjuman Moholla",
       venueAddress: "Behind Iddgah Masjid, Near Todi College, Laxmangarh, Sikar, Rajasthan – 332311",
       mapsUrl: "https://maps.google.com/?q=Madrare-Rahmat+Anjuman+Moholla+Behind+Iddgah+Masjid+Near+Todi+College+Laxmangarh+Sikar+Rajasthan+332311",
@@ -89,8 +96,8 @@ export const invitationData: InvitationConfig = {
     {
       title: "WEDDING RECEPTION",
       subtitle: "Grand Feast & Blessings (Walima)",
-      dateStr: "15th November 2026 • Sunday",
-      time: "7:00 PM Onwards",
+      dateStr: "15th November 2026 � Sunday � 5th Jumadil Aakhirah, 1448 Hijri",
+      time: "After Namaz-e-Magrib",
       venueName: "Mohalla Hussain Gunj",
       venueAddress: "Mohalla Hussain Gunj, Sikar, Rajasthan – 332001",
       mapsUrl: "https://maps.google.com/?q=Mohalla+Hussain+Gunj+Sikar+Rajasthan+332001",

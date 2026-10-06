@@ -88,11 +88,9 @@ export const InvitationCover: React.FC<InvitationCoverProps> = ({
             <div className="w-full h-full rounded-full border border-dashed border-[#C9A24A]/80 flex flex-col items-center justify-center bg-gradient-to-br from-[#641C24] via-[#641C24] to-[#3A2118] shadow-inner p-1 overflow-hidden">
               {/* Couple Initials (AH & RB) */}
               <span className="font-cinzel-decorative text-2xl sm:text-3xl font-bold tracking-widest text-[#F5EBDD] drop-shadow-md whitespace-nowrap inline-flex items-center justify-center gap-1.5">
-                H <span className="text-[#C9A24A] font-light text-base sm:text-lg">&amp;</span> R
+                A <span className="text-[#C9A24A] font-light text-base sm:text-lg">&amp;</span> R
               </span>
-              <span className="font-cinzel text-[7px] sm:text-[8px] tracking-[0.24em] text-[#C9A24A] uppercase mt-0.5 opacity-90">
-                H &amp; R
-              </span>
+              
             </div>
           </div>
         </div>

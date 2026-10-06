@@ -92,6 +92,19 @@ export const FamilySection: React.FC<FamilySectionProps> = ({ data }) => {
           </p>
         </motion.div>
 
+        <div className="w-full grid grid-cols-2 gap-2 my-1.5">
+          {data.rsvpNames.map((name) => (
+            <div
+              key={name}
+              className="p-2 rounded-lg bg-[#F5EBDD] border border-[#C9A24A]/45 shadow-2xs text-center"
+            >
+              <span className="font-serif-luxury text-xs text-[#3A2118] font-semibold">
+                {name}
+              </span>
+            </div>
+          ))}
+        </div>
+
         {/* Contact & RSVP Box */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -109,7 +122,6 @@ export const FamilySection: React.FC<FamilySectionProps> = ({ data }) => {
           <p className="font-sans-body text-xs text-[#3A2118] mt-0.5 tracking-wider font-semibold">
             {data.contactPhone}
           </p>
-
           {/* Quick Contact Buttons */}
           <div className="flex items-center gap-2.5 mt-3 w-full justify-center">
             <a

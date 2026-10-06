@@ -2,12 +2,12 @@
 
 @layer base {
   :root {
-    --font-serif: 'Cormorant Garamond', Georgia, serif;
-    --font-display: 'Bodoni Moda', 'Cinzel', 'Cormorant Garamond', Georgia, serif;
-    --font-script: 'Great Vibes', cursive;
-    --font-cinzel: 'Cinzel', serif;
-    --font-sans: 'Montserrat', sans-serif;
-    --font-arabic: 'Amiri', serif;
+--font-display: 'Bodoni Moda', serif;
+--font-serif: 'Cormorant Garamond', serif;
+--font-heading: 'Cinzel', serif;
+--font-script: 'Great Vibes', cursive;
+--font-sans: 'Montserrat', sans-serif;
+--font-arabic: 'Amiri', serif;
     
     /* Requested Rajasthani wedding palette */
     --color-palace-dark: #3A2118;

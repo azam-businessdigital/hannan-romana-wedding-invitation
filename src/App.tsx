@@ -7,7 +7,6 @@ import { CoupleSection } from './components/CoupleSection';
 import { Countdown } from './components/Countdown';
 import { NikahDetailOnly } from './components/NikahDetailOnly';
 import { ReceptionDetailOnly } from './components/ReceptionDetailOnly';
-import { VenueSection } from './components/VenueSection';
 import { FamilySection } from './components/FamilySection';
 import { FinalEnvelope } from './components/FinalEnvelope';
 import { ThankYou } from './components/ThankYou';
@@ -26,25 +25,23 @@ export default function App() {
   const [petalIntensity, setPetalIntensity] = useState<'gentle' | 'celebratory'>('gentle');
   const touchStartY = useRef<number | null>(null);
   
-  // 9 Royal Rajasthani Invitation Sections in user-specified order:
+  // 8 Royal Rajasthani Invitation Sections in user-specified order:
   // 1. First slide only initials
   // 2. Grandparents invite for wedding of beloved grandson + details (names in 2 lines, final invitation)
   // 3. Timer (Countdown)
   // 4. Nikah detail only
   // 5. Reception details only
-  // 6. Locations (Maps)
-  // 7. RSVP
-  // 8. Interactive wedding card
-  // 9. Thank You
-  const totalPages = 9;
+  // 6. RSVP
+  // 7. Interactive wedding card
+  // 8. Thank You
+  const totalPages = 8;
 
   const pageTitles = [
-    "H & R",
+    "A & R",
     "Family Invitation",
     "Auspicious Countdown",
     "Nikah Ceremony",
     "Walima Ceremony",
-    "Ceremony Locations",
     "RSVP & Family",
     "Wedding Card",
     "Thank You"
@@ -287,22 +284,15 @@ export default function App() {
               />
             )}
 
-            {/* Slide 6: Locations & Maps */}
+            {/* Slide 6: RSVP & Compliments */}
             {currentPage === 5 && (
-              <VenueSection
-                data={invitationData}
-              />
-            )}
-
-            {/* Slide 7: RSVP & Compliments */}
-            {currentPage === 6 && (
               <FamilySection
                 data={invitationData}
               />
             )}
 
-            {/* Slide 8: Interactive Folding Card (names hidden, left Abdul Hannan, right Romana Bano; open reveals Abdul Hannan & Dr. Romana Bano) */}
-            {currentPage === 7 && (
+            {/* Slide 7: Interactive Folding Card (names hidden, left Abdul Hannan, right Romana Bano; open reveals Abdul Hannan & Dr. Romana Bano) */}
+            {currentPage === 6 && (
               <FinalEnvelope
                 data={invitationData}
                 onOpenTrigger={() => setPetalIntensity('celebratory')}
@@ -313,8 +303,8 @@ export default function App() {
               />
             )}
 
-            {/* Slide 9: Thank You */}
-            {currentPage === 8 && <ThankYou data={invitationData} />}
+            {/* Slide 8: Thank You */}
+            {currentPage === 7 && <ThankYou data={invitationData} />}
           </motion.div>
         </AnimatePresence>
       </main>

@@ -120,7 +120,7 @@ export const NikahDetailOnly: React.FC<NikahDetailOnlyProps> = ({ data }) => {
                   {data.nikahTime}
                 </p>
                 <p className="font-cormorant italic text-[11px] text-[#3A2118]">
-                  Baad Namaz-e-Zuhr
+                  After sunset
                 </p>
               </div>
             </div>

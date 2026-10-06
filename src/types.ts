@@ -77,6 +77,7 @@ export interface InvitationConfig {
   contactPhone: string; // "+91 9892020228"
   contactPhoneCall: string; // "+919892020228"
   contactPhoneRaw: string; // "919892020228"
+  rsvpNames: string[];
   musicUrl: string;
   events: WeddingEvent[];
 }

@@ -500,7 +500,7 @@ export const WaxSeal: React.FC<{
   size?: 'sm' | 'md' | 'lg';
   isBroken?: boolean;
 }> = ({
-  monogram = "H & R",
+  monogram = "A & R",
   onClick,
   className = "",
   size = 'md',

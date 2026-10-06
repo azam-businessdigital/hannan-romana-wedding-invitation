@@ -55,13 +55,13 @@ export const CoupleSection: React.FC<CoupleSectionProps> = ({ data }) => {
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F5EBDD] border border-[#C9A24A]/60 shadow-2xs mb-1.5">
           <Sparkles className="w-3 h-3 text-[#C9A24A]" />
           <span className="font-cinzel text-[8.5px] sm:text-[9.5px] tracking-[0.25em] uppercase text-[#641C24] font-bold whitespace-nowrap">
-            BLESSINGS OF ELDERS
+            WITH LOVE & BLESSINGS
           </span>
           <Sparkles className="w-3 h-3 text-[#C9A24A]" />
         </div>
 
         <h2 className="font-cinzel text-[10.5px] sm:text-[12px] tracking-[0.22em] text-[#C9A24A] uppercase font-bold mb-1">
-          WITH THE BLESSINGS OF OUR FAMILIES
+          OUR FAMILIES CORDIALLY INVITE YOU
         </h2>
 
         <div className="w-full max-w-sm grid grid-cols-2 gap-2 mt-1 px-1">
@@ -88,7 +88,7 @@ export const CoupleSection: React.FC<CoupleSectionProps> = ({ data }) => {
         className="relative z-10 flex flex-col items-center text-center px-3 max-w-sm sm:max-w-md w-full py-1"
       >
         <p className="font-cormorant text-xs sm:text-[13px] italic text-[#3A2118] max-w-xs mb-2">
-          We cordially invite you to celebrate the joyous Walima ceremony of our grandson.
+          With The Blessings Of Allah Almighty, They Cordially Invite You To Grace The Auspicious Occasion Of The Wedding Ceremony Of Their Beloved Grandson
         </p>
 
         {/* COUPLE NAMES: Strictly kept in 2 lines per user request! */}
