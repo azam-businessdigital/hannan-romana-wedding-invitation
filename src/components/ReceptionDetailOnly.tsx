@@ -80,8 +80,8 @@ export const ReceptionDetailOnly: React.FC<ReceptionDetailOnlyProps> = ({ data }
         {/* Cordial Invitation Banner */}
         <div className="bg-[#F5EBDD]/80 border border-[#C9A24A]/40 rounded-xl p-2.5 sm:p-3 text-center mb-2.5 w-full shadow-2xs">
           <p className="font-serif-luxury italic text-xs sm:text-[13px] text-[#3A2118] leading-relaxed">
-            &ldquo;You are cordially invited to partake in the joyous banquet &amp; shower your warm blessings upon the newlywed couple.&rdquo;
-          </p>
+  &ldquo;With the blessings of Allah Almighty, we invite you to join us in celebrating this blessed union and grace the newlywed couple with your presence, duas, and warmest blessings.&rdquo;
+</p>
         </div>
 
         {/* The Grand Reception Card */}

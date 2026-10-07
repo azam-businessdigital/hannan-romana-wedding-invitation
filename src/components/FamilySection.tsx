@@ -12,7 +12,13 @@ export const FamilySection: React.FC<FamilySectionProps> = ({ data }) => {
   const whatsappUrl = `https://api.whatsapp.com/send?phone=${data.contactPhoneRaw}&text=${encodeURIComponent(`Assalamu Alaikum Ataul Rehman Bhai, hearty congratulations on the wedding of Abdul Hannan & Dr. Romana Bano!`)}`;
 
   return (
-    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-center gap-3 p-3.5 sm:p-6 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-20">
+    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-start gap-1 p-3 sm:p-4 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-[clamp(108px,17vh,140px)]">
+      <img
+        src="/assets/rajasthani-wildlife-border.png"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-0 z-0 h-[clamp(88px,14vh,125px)] w-full object-cover object-bottom opacity-90 select-none"
+      />
       {/* Subtle Rajasthani jali lattice texture & grain */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-15 mix-blend-multiply bg-rajasthani-jali"
@@ -42,7 +48,7 @@ export const FamilySection: React.FC<FamilySectionProps> = ({ data }) => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false }}
         transition={{ duration: 1.0 }}
-        className="relative z-10 pt-11 sm:pt-13 w-full flex flex-col items-center"
+        className="relative z-10 pt-9 sm:pt-10 w-full flex flex-col items-center"
       >
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F5EBDD] border border-[#C9A24A]/60 shadow-2xs">
           <span className="font-cinzel text-[8.5px] sm:text-[9.5px] tracking-[0.25em] uppercase text-[#641C24] font-bold whitespace-nowrap">
@@ -52,27 +58,27 @@ export const FamilySection: React.FC<FamilySectionProps> = ({ data }) => {
       </motion.div>
 
       {/* Center Family Greetings & Lineage Cards */}
-      <div className="relative z-10 flex flex-col items-center text-center px-3 max-w-sm sm:max-w-md w-full">
+      <div className="relative z-10 flex flex-col items-center text-center px-2 max-w-sm sm:max-w-md w-full">
         {/* Grandparents Tribute Box (Strictly single-line typography) */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
           transition={{ duration: 0.9 }}
-          className="w-full p-3 sm:p-3.5 rounded-xl bg-[#F5EBDD] border border-[#C9A24A]/45 shadow-2xs mb-2 text-center"
+          className="relative z-10 w-full p-2 sm:p-2.5 rounded-xl bg-[#F5EBDD] border border-[#C9A24A]/45 shadow-2xs mb-1 text-center"
         >
           <span className="font-cinzel text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-[#C9A24A] font-bold block mb-1.5 whitespace-nowrap">
             With The Blessings Of Our Families
           </span>
-          <div className="flex flex-col gap-2 text-center pt-1.5 border-t border-[#C9A24A]/25 w-full">
-            <div className="bg-[#F5EBDD] p-2 rounded-lg border border-[#C9A24A]/30">
+          <div className="flex flex-col gap-1 text-center pt-1 border-t border-[#C9A24A]/25 w-full">
+            <div className="bg-[#F5EBDD] p-1.5 rounded-lg border border-[#C9A24A]/30">
               <p className="font-serif-luxury text-xs sm:text-[13px] text-[#3A2118] font-semibold mt-0.5">
                 Haji Abdul Rehman Chowhan &amp; Hajjan Zubeda Chowhan
               </p>
             </div>
-            <div className="bg-[#F5EBDD] p-2 rounded-lg border border-[#C9A24A]/30">
-              <p className="font-serif-luxury text-xs sm:text-[13px] text-[#3A2118] font-semibold mt-0.5">
-                Mr. Nisar Ahmed Gehlot &amp; Mrs. Jamila Gehlot
+            <div className="bg-[#F5EBDD] p-1.5 rounded-lg border border-[#C9A24A]/30">
+              <p className="font-serif-luxury text-xs sm:text-[13px] text-[#3A2118] font-semibold mt-0.5 leading-snug break-words">
+                Mr. Nisar Ahmed Gehlot<br />&amp; Mrs. Jamila Gehlot
               </p>
             </div>
           </div>
@@ -84,19 +90,19 @@ export const FamilySection: React.FC<FamilySectionProps> = ({ data }) => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: false }}
           transition={{ duration: 1.0, delay: 0.2 }}
-          className="my-1"
+          className="my-0"
         >
-          <FloralDivider className="w-28 sm:w-36 mb-1.5" />
-          <p className="font-serif-luxury italic text-xs sm:text-sm text-[#3A2118] leading-relaxed max-w-xs mx-auto">
+          <FloralDivider className="w-28 sm:w-36 mb-1" />
+          <p className="font-serif-luxury italic text-[11px] sm:text-xs text-[#3A2118] leading-snug max-w-xs mx-auto">
             &ldquo;{data.closingBlessing}&rdquo;
           </p>
         </motion.div>
 
-        <div className="w-full grid grid-cols-2 gap-2 my-1.5">
+        <div className="w-full grid grid-cols-2 gap-1.5 my-1">
           {data.rsvpNames.map((name) => (
             <div
               key={name}
-              className="p-2 rounded-lg bg-[#F5EBDD] border border-[#C9A24A]/45 shadow-2xs text-center"
+              className="p-1.5 rounded-lg bg-[#F5EBDD] border border-[#C9A24A]/45 shadow-2xs text-center"
             >
               <span className="font-serif-luxury text-xs text-[#3A2118] font-semibold">
                 {name}
@@ -111,19 +117,29 @@ export const FamilySection: React.FC<FamilySectionProps> = ({ data }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
           transition={{ duration: 1.0, delay: 0.35 }}
-          className="w-full p-3.5 sm:p-4 rounded-xl bg-[#F5EBDD] border-2 border-[#C9A24A]/70 shadow-sm flex flex-col items-center mt-1.5"
+          className="w-full p-2.5 sm:p-3 rounded-xl bg-[#F5EBDD] border-2 border-[#C9A24A]/70 shadow-sm flex flex-col items-center mt-1"
         >
           <span className="font-cinzel text-[10px] tracking-[0.25em] uppercase text-[#C9A24A] font-bold">
             R.S.V.P &amp; Warm Welcome
           </span>
-          <p className="font-serif-luxury text-xl font-medium text-[#3A2118] mt-1">
+          <p className="font-serif-luxury text-lg font-medium text-[#3A2118] mt-0.5">
             {data.contactPerson}
           </p>
           <p className="font-sans-body text-xs text-[#3A2118] mt-0.5 tracking-wider font-semibold">
             {data.contactPhone}
           </p>
+          {data.additionalContactPerson && data.additionalContactPhone && (
+            <>
+              <p className="font-serif-luxury text-base font-medium text-[#3A2118] mt-1">
+                {data.additionalContactPerson}
+              </p>
+              <p className="font-sans-body text-xs text-[#3A2118] mt-0.5 tracking-wider font-semibold">
+                {data.additionalContactPhone}
+              </p>
+            </>
+          )}
           {/* Quick Contact Buttons */}
-          <div className="flex items-center gap-2.5 mt-3 w-full justify-center">
+          <div className="flex items-center gap-2.5 mt-2 w-full justify-center">
             <a
               href={`tel:${data.contactPhoneCall}`}
               className="flex-1 max-w-[140px] py-2 px-3 rounded-lg bg-[#F5EBDD] border border-[#C9A24A]/70 hover:border-[#C9A24A] font-cinzel text-[10px] tracking-wider uppercase text-[#3A2118] font-bold flex items-center justify-center gap-1.5 shadow-2xs hover:bg-[#F5EBDD] transition-all"
@@ -151,7 +167,7 @@ export const FamilySection: React.FC<FamilySectionProps> = ({ data }) => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: false }}
         transition={{ duration: 1.0, delay: 0.5 }}
-        className="relative z-10 pb-4 sm:pb-6 flex items-center justify-center gap-2 text-center px-4"
+        className="relative z-10 pb-0 flex items-center justify-center gap-2 text-center px-4"
       >
         <span className="font-cinzel text-[9.5px] sm:text-[10px] tracking-[0.2em] uppercase text-[#3A2118] font-semibold">
           {data.compliments}

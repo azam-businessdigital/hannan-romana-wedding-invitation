@@ -25,23 +25,25 @@ export default function App() {
   const [petalIntensity, setPetalIntensity] = useState<'gentle' | 'celebratory'>('gentle');
   const touchStartY = useRef<number | null>(null);
   
-  // 8 Royal Rajasthani Invitation Sections in user-specified order:
+  // Royal Rajasthani Invitation Sections:
   // 1. First slide only initials
   // 2. Grandparents invite for wedding of beloved grandson + details (names in 2 lines, final invitation)
-  // 3. Timer (Countdown)
-  // 4. Nikah detail only
-  // 5. Reception details only
-  // 6. RSVP
-  // 7. Interactive wedding card
-  // 8. Thank You
-  const totalPages = 8;
+  // 3. Nikah detail only
+  // 4. Nikah countdown
+  // 5. Walima details
+  // 6. Walima countdown
+  // 7. RSVP
+  // 8. Interactive wedding card
+  // 9. Thank You
+  const totalPages = 9;
 
   const pageTitles = [
     "A & R",
     "Family Invitation",
-    "Auspicious Countdown",
     "Nikah Ceremony",
+    "Nikah Countdown",
     "Walima Ceremony",
+    "Walima Countdown",
     "RSVP & Family",
     "Wedding Card",
     "Thank You"
@@ -234,7 +236,7 @@ export default function App() {
           src="/assets/rajasthani-wildlife-border.png"
           alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute bottom-0 left-0 z-20 h-[clamp(72px,14vh,125px)] w-full object-cover object-bottom opacity-90 select-none"
+          className={`pointer-events-none absolute bottom-0 left-0 z-20 h-[clamp(72px,14vh,125px)] w-full object-cover object-bottom opacity-90 select-none ${currentPage === 6 ? 'hidden' : ''}`}
         />
 
         <AnimatePresence mode="wait" custom={direction}>
@@ -262,19 +264,16 @@ export default function App() {
               />
             )}
 
-            {/* Slide 3: Countdown Timer */}
+            {/* Slide 3: Nikah Detail Only */}
             {currentPage === 2 && (
-              <Countdown
-                targetDate={invitationData.receptionDate}
-                displayDate={invitationData.receptionDisplayDate}
-              />
-            )}
-
-            {/* Slide 4: Nikah Detail Only */}
-            {currentPage === 3 && (
               <NikahDetailOnly
                 data={invitationData}
               />
+            )}
+
+            {/* Slide 4: Nikah Countdown */}
+            {currentPage === 3 && (
+              <Countdown targetDate={invitationData.nikahDate} displayDate={invitationData.nikahDisplayDate} eventName="Nikah" />
             )}
 
             {/* Slide 5: Reception Details Only */}
@@ -284,15 +283,20 @@ export default function App() {
               />
             )}
 
-            {/* Slide 6: RSVP & Compliments */}
+            {/* Slide 6: Walima Countdown */}
             {currentPage === 5 && (
+              <Countdown targetDate={invitationData.receptionDate} displayDate={invitationData.receptionDisplayDate} />
+            )}
+
+            {/* Slide 7: RSVP & Compliments */}
+            {currentPage === 6 && (
               <FamilySection
                 data={invitationData}
               />
             )}
 
             {/* Slide 7: Interactive Folding Card (names hidden, left Abdul Hannan, right Romana Bano; open reveals Abdul Hannan & Dr. Romana Bano) */}
-            {currentPage === 6 && (
+            {currentPage === 7 && (
               <FinalEnvelope
                 data={invitationData}
                 onOpenTrigger={() => setPetalIntensity('celebratory')}
@@ -303,8 +307,8 @@ export default function App() {
               />
             )}
 
-            {/* Slide 8: Thank You */}
-            {currentPage === 7 && <ThankYou data={invitationData} />}
+            {/* Slide 9: Thank You */}
+            {currentPage === 8 && <ThankYou data={invitationData} />}
           </motion.div>
         </AnimatePresence>
       </main>

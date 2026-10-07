@@ -39,7 +39,7 @@ export const invitationData: InvitationConfig = {
   receptionDate: "2026-11-15",
   receptionDisplayDate: "15th November 2026 • 5th Jumadil Aakhirah, 1448 Hijri",
   receptionDay: "Sunday",
-  receptionTime: "After Namaz-e-Magrib",
+  receptionTime: "After Namaz-e-Isha",
   receptionVenue: "Mohalla Hussain Gunj",
   receptionAddress: "Mohalla Hussain Gunj, Sikar, Rajasthan – 332001",
   receptionCity: "Sikar, Rajasthan",
@@ -68,7 +68,8 @@ export const invitationData: InvitationConfig = {
   contactPerson: "Ataul Rehman Chowhan",
   contactPhone: "+91 9892020228",
   contactPhoneCall: "+919892020228",
-  contactPhoneRaw: "919892020228",  rsvpNames: [
+  contactPhoneRaw: "919892020228",
+  rsvpNames: [
     "Atiqur Rehman",
     "Abul Ala",
     "Abul Khair",
@@ -76,6 +77,9 @@ export const invitationData: InvitationConfig = {
     "Abul Hasan",
     "Mohammed Zaheeruddin"
   ],
+  additionalContactPerson: "Amir Chowhan",
+  additionalContactPhone: "+91 9892062845",
+  additionalContactPhoneCall: "+919892062845",
 
   // Soothing regal Indian classical / sufi instrumental background melody
   musicUrl: "/assets/audio.mp3",
@@ -97,7 +101,7 @@ export const invitationData: InvitationConfig = {
       title: "WEDDING RECEPTION",
       subtitle: "Grand Feast & Blessings (Walima)",
       dateStr: "15th November 2026 � Sunday � 5th Jumadil Aakhirah, 1448 Hijri",
-      time: "After Namaz-e-Magrib",
+      time: "After Namaz-e-Isha",
       venueName: "Mohalla Hussain Gunj",
       venueAddress: "Mohalla Hussain Gunj, Sikar, Rajasthan – 332001",
       mapsUrl: "https://maps.google.com/?q=Mohalla+Hussain+Gunj+Sikar+Rajasthan+332001",

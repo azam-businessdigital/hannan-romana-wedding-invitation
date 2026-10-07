@@ -5,6 +5,7 @@ import { FloralCorner, FloralDivider, RajasthaniMehrabArch, PalaceLantern } from
 interface CountdownProps {
   targetDate: string; // "2026-11-15"
   displayDate: string;
+  eventName?: string;
 }
 
 interface TimeRemaining {
@@ -15,7 +16,7 @@ interface TimeRemaining {
   isPassed: boolean;
 }
 
-export const Countdown: React.FC<CountdownProps> = ({ targetDate, displayDate }) => {
+export const Countdown: React.FC<CountdownProps> = ({ targetDate, displayDate, eventName = 'Walima' }) => {
   const calculateTime = (): TimeRemaining => {
     const target = new Date(`${targetDate}T19:00:00+05:30`).getTime();
     const now = new Date().getTime();
@@ -85,7 +86,7 @@ export const Countdown: React.FC<CountdownProps> = ({ targetDate, displayDate })
       >
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F5EBDD] border border-[#C9A24A]/60 shadow-2xs">
           <span className="font-cinzel text-[8.5px] sm:text-[9.5px] tracking-[0.25em] uppercase text-[#641C24] font-bold whitespace-nowrap">
-            THE AUSPICIOUS COUNTDOWN
+            COUNTDOWN TO {eventName.toUpperCase()}
           </span>
         </div>
       </motion.div>
@@ -99,7 +100,7 @@ export const Countdown: React.FC<CountdownProps> = ({ targetDate, displayDate })
           transition={{ duration: 1.0 }}
           className="font-cinzel text-xl sm:text-2xl md:text-3xl font-bold tracking-[0.16em] uppercase text-[#3A2118] mb-2"
         >
-          Until The Grand Walima
+          Until The {eventName}
         </motion.h2>
 
         <FloralDivider className="w-32 sm:w-40 mb-4 sm:mb-5" />
