@@ -96,7 +96,7 @@ export const invitationData: InvitationConfig = {
     {
       title: "WEDDING RECEPTION",
       subtitle: "Grand Feast & Blessings (Walima)",
-      dateStr: "15th November 2026 • Sunday • 5th Jumadil Aakhirah, 1448 Hijri",
+      dateStr: "15th November 2026 ï¿½ Sunday ï¿½ 5th Jumadil Aakhirah, 1448 Hijri",
       time: "After Namaz-e-Magrib",
       venueName: "Mohalla Hussain Gunj",
       venueAddress: "Mohalla Hussain Gunj, Sikar, Rajasthan â€“ 332001",
