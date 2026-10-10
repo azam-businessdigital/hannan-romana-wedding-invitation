@@ -33,6 +33,7 @@ export const PetalCanvas: React.FC<{
     if (!ctx) return;
 
     let animationFrameId: number | null = null;
+    let scrollResumeTimer: number | null = null;
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
@@ -200,16 +201,27 @@ export const PetalCanvas: React.FC<{
     };
     const handleVisibilityChange = () => document.hidden ? stopAnimation() : startAnimation();
     const handleMotionPreferenceChange = () => prefersReducedMotion.matches ? stopAnimation() : startAnimation();
+    const handleScroll = () => {
+      stopAnimation();
+      if (scrollResumeTimer !== null) window.clearTimeout(scrollResumeTimer);
+      scrollResumeTimer = window.setTimeout(() => {
+        scrollResumeTimer = null;
+        startAnimation();
+      }, 180);
+    };
 
     window.addEventListener('resize', handleResize, { passive: true });
     document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener('scroll', handleScroll, { passive: true, capture: true });
     prefersReducedMotion.addEventListener('change', handleMotionPreferenceChange);
     startAnimation();
 
     return () => {
       stopAnimation();
+      if (scrollResumeTimer !== null) window.clearTimeout(scrollResumeTimer);
       window.removeEventListener('resize', handleResize);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
+      document.removeEventListener('scroll', handleScroll, true);
       prefersReducedMotion.removeEventListener('change', handleMotionPreferenceChange);
     };
   }, [active, intensity]);
