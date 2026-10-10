@@ -216,7 +216,7 @@ export const RajasthaniArchArcade: React.FC<{
   );
 };
 
-export const RajasthaniBackground: React.FC = () => {
+export const RajasthaniBackground: React.FC = React.memo(() => {
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden select-none z-0">
       {/* 1. Royal Jaipur Rose Sandstone & Palace Courtyard Ambiance */}
@@ -288,4 +288,4 @@ export const RajasthaniBackground: React.FC = () => {
       </div>
     </div>
   );
-};
+});

@@ -230,16 +230,13 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
           <motion.div
             onClick={handleOpenCard}
             initial={false}
-            animate={{
-              rotateY: isOpen ? -115 : 0,
-              boxShadow: isOpen 
-                ? '-10px 0 25px rgba(0,0,0,0.25)' 
-                : '2px 0 8px rgba(40,20,10,0.15)'
-            }}
+            animate={{ rotateY: isOpen ? -115 : 0 }}
             transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
             style={{ transformOrigin: 'left center' }}
             className="absolute left-0 top-0 bottom-0 w-1/2 bg-[#F5EBDD] bg-gradient-to-r from-[#F5EBDD] via-[#F5EBDD] to-[#C9A24A]/20 border-r-2 border-[#C9A24A] z-20 cursor-pointer flex flex-col items-center justify-between p-3 sm:p-4 select-none"
           >
+            <div aria-hidden="true" className={`pointer-events-none absolute inset-0 transition-opacity duration-1000 ${isOpen ? 'opacity-0' : 'opacity-100'}`} style={{ boxShadow: '2px 0 8px rgba(40,20,10,0.15)' }} />
+            <div aria-hidden="true" className={`pointer-events-none absolute inset-0 transition-opacity duration-1000 ${isOpen ? 'opacity-100' : 'opacity-0'}`} style={{ boxShadow: '-10px 0 25px rgba(0,0,0,0.25)' }} />
             {/* Flap Gold Inner Border */}
             <div className="absolute inset-1.5 border border-[#C9A24A]/40 rounded-l-xl pointer-events-none" />
             <div className="absolute top-2 left-2">
@@ -281,16 +278,13 @@ export const FinalEnvelope: React.FC<FinalEnvelopeProps> = ({
           <motion.div
             onClick={handleOpenCard}
             initial={false}
-            animate={{
-              rotateY: isOpen ? 115 : 0,
-              boxShadow: isOpen 
-                ? '10px 0 25px rgba(0,0,0,0.25)' 
-                : '-2px 0 8px rgba(40,20,10,0.15)'
-            }}
+            animate={{ rotateY: isOpen ? 115 : 0 }}
             transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
             style={{ transformOrigin: 'right center' }}
             className="absolute right-0 top-0 bottom-0 w-1/2 bg-[#F5EBDD] bg-gradient-to-l from-[#F5EBDD] via-[#F5EBDD] to-[#C9A24A]/20 border-l-2 border-[#C9A24A] z-20 cursor-pointer flex flex-col items-center justify-between p-3 sm:p-4 select-none"
           >
+            <div aria-hidden="true" className={`pointer-events-none absolute inset-0 transition-opacity duration-1000 ${isOpen ? 'opacity-0' : 'opacity-100'}`} style={{ boxShadow: '-2px 0 8px rgba(40,20,10,0.15)' }} />
+            <div aria-hidden="true" className={`pointer-events-none absolute inset-0 transition-opacity duration-1000 ${isOpen ? 'opacity-100' : 'opacity-0'}`} style={{ boxShadow: '10px 0 25px rgba(0,0,0,0.25)' }} />
             {/* Flap Gold Inner Border */}
             <div className="absolute inset-1.5 border border-[#C9A24A]/40 rounded-r-xl pointer-events-none" />
             <div className="absolute top-2 right-2">

@@ -33,14 +33,22 @@ export const PetalCanvas: React.FC<{
     if (!ctx) return;
 
     let animationFrameId: number | null = null;
-    let scrollResumeTimer: number | null = null;
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 1);
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+
+    const resizeCanvas = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.round(width * pixelRatio);
+      canvas.height = Math.round(height * pixelRatio);
+      ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    };
+
+    resizeCanvas();
 
     const handleResize = () => {
-      if (!canvas) return;
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      resizeCanvas();
     };
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -70,6 +78,10 @@ export const PetalCanvas: React.FC<{
     }
 
     const particles: Particle[] = [];
+    const petalPath = new Path2D();
+    petalPath.moveTo(0, -1);
+    petalPath.bezierCurveTo(0.7, -0.7, 0.9, 0.3, 0, 1);
+    petalPath.bezierCurveTo(-0.9, 0.3, -0.7, -0.7, 0, -1);
 
     // Palette of Jaipur Palace Blush Roses, Peach Blossoms, Jasmine & Rose Gold Foil
     const petalColors = [
@@ -113,12 +125,8 @@ export const PetalCanvas: React.FC<{
       context.translate(x, y);
       context.rotate(rotation);
       context.fillStyle = `${color}${opacity})`;
-      context.beginPath();
-      // Graceful organic curved rose petal path
-      context.moveTo(0, -size);
-      context.bezierCurveTo(size * 0.7, -size * 0.7, size * 0.9, size * 0.3, 0, size);
-      context.bezierCurveTo(-size * 0.9, size * 0.3, -size * 0.7, -size * 0.7, 0, -size);
-      context.fill();
+      context.scale(size, size);
+      context.fill(petalPath);
       context.restore();
     };
 
@@ -134,7 +142,7 @@ export const PetalCanvas: React.FC<{
       context.beginPath();
       context.arc(x, y, size, 0, Math.PI * 2);
       context.fillStyle = `${color}${opacity})`;
-      context.shadowColor = 'rgba(235, 195, 80, 0.6)';
+      context.shadowColor = 'transparent';
       context.fill();
       context.restore();
     };
@@ -201,27 +209,15 @@ export const PetalCanvas: React.FC<{
     };
     const handleVisibilityChange = () => document.hidden ? stopAnimation() : startAnimation();
     const handleMotionPreferenceChange = () => prefersReducedMotion.matches ? stopAnimation() : startAnimation();
-    const handleScroll = () => {
-      stopAnimation();
-      if (scrollResumeTimer !== null) window.clearTimeout(scrollResumeTimer);
-      scrollResumeTimer = window.setTimeout(() => {
-        scrollResumeTimer = null;
-        startAnimation();
-      }, 180);
-    };
-
     window.addEventListener('resize', handleResize, { passive: true });
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    document.addEventListener('scroll', handleScroll, { passive: true, capture: true });
     prefersReducedMotion.addEventListener('change', handleMotionPreferenceChange);
     startAnimation();
 
     return () => {
       stopAnimation();
-      if (scrollResumeTimer !== null) window.clearTimeout(scrollResumeTimer);
       window.removeEventListener('resize', handleResize);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
-      document.removeEventListener('scroll', handleScroll, true);
       prefersReducedMotion.removeEventListener('change', handleMotionPreferenceChange);
     };
   }, [active, intensity]);

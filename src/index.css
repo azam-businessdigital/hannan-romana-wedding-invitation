@@ -218,14 +218,15 @@ main :is(.rounded-xl.border, .rounded-2xl.border, [class*="rounded-"][class*="bo
 
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 16px rgba(201, 162, 74, 0.35), inset 0 0 8px rgba(245, 235, 221, 0.6);
+    opacity: 0.72;
   }
   50% {
-    box-shadow: 0 0 28px rgba(201, 162, 74, 0.65), inset 0 0 14px rgba(245, 235, 221, 0.9);
+    opacity: 1;
   }
 }
 
 .animate-pulse-glow {
+  box-shadow: 0 0 22px rgba(201, 162, 74, 0.5), inset 0 0 10px rgba(245, 235, 221, 0.75);
   animation: pulseGlow 3s infinite ease-in-out;
 }
 
@@ -234,25 +235,22 @@ main :is(.rounded-xl.border, .rounded-2xl.border, [class*="rounded-"][class*="bo
   0%, 100% {
     transform: scale(1) translateY(0);
     opacity: 0.92;
-    filter: drop-shadow(0 0 8px rgba(255, 185, 70, 0.9));
   }
   25% {
     transform: scale(1.08, 0.95) translateY(-0.5px);
     opacity: 1;
-    filter: drop-shadow(0 0 12px rgba(255, 200, 90, 1));
   }
   50% {
     transform: scale(0.96, 1.04) translateY(0.5px);
     opacity: 0.85;
-    filter: drop-shadow(0 0 6px rgba(255, 170, 50, 0.8));
   }
   75% {
     transform: scale(1.04, 0.98) translateY(-0.3px);
     opacity: 0.96;
-    filter: drop-shadow(0 0 10px rgba(255, 190, 80, 0.95));
   }
 }
 
 .animate-candle-flicker {
+  filter: drop-shadow(0 0 8px rgba(255, 185, 70, 0.9));
   animation: candleFlicker 2.2s infinite ease-in-out;
 }

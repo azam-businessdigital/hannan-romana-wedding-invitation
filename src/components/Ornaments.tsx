@@ -542,7 +542,7 @@ export const WaxSeal: React.FC<{
 };
 
 /** Rajasthani haveli inspired jali frame for the invitation edges. */
-export const RajasthaniPageFrame: React.FC<{ className?: string }> = ({ className = '' }) => (
+export const RajasthaniPageFrame = React.memo(({ className = '' }: { className?: string }) => (
   <div className={`pointer-events-none select-none ${className}`} aria-hidden="true">
     <svg viewBox="0 0 500 1000" preserveAspectRatio="none" className="absolute inset-0 h-full w-full">
       <defs>
@@ -565,4 +565,4 @@ export const RajasthaniPageFrame: React.FC<{ className?: string }> = ({ classNam
       ))}
     </svg>
   </div>
-);
+));

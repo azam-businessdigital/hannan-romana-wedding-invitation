@@ -22,7 +22,7 @@ export default function App() {
   const [direction, setDirection] = useState<'forward' | 'backward'>('forward');
   const [petalIntensity, setPetalIntensity] = useState<'gentle' | 'celebratory'>('gentle');
   const touchStartY = useRef<number | null>(null);
-  const lastWheelTime = useRef(0);
+  const transitionLocked = useRef(false);
   
   // Royal Rajasthani Invitation Sections:
   // 1. First slide only initials
@@ -50,7 +50,8 @@ export default function App() {
 
   // Transition to specific page
   const goToPage = (pageIndex: number) => {
-    if (pageIndex < 0 || pageIndex >= totalPages || pageIndex === currentPage) return;
+    if (transitionLocked.current || pageIndex < 0 || pageIndex >= totalPages || pageIndex === currentPage) return;
+    transitionLocked.current = true;
     setDirection(pageIndex > currentPage ? 'forward' : 'backward');
     setCurrentPage(pageIndex);
     if (!hasStarted && pageIndex > 0) {
@@ -96,7 +97,7 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentPage]);
 
-  // Preserve native scrolling inside a slide; turn the page only at its scroll boundary.
+  // Let native scrolling handle slide content; use wheel input for paging only at boundaries.
   useEffect(() => {
     const handleWheel = (event: WheelEvent) => {
       if (Math.abs(event.deltaY) < 12) return;
@@ -104,25 +105,18 @@ export default function App() {
       const slide = event.target instanceof Element
         ? event.target.closest<HTMLElement>('.slide-scroll-container')
         : null;
-      if (slide && slide.scrollHeight > slide.clientHeight) {
-        const canScrollDown = slide.scrollTop + slide.clientHeight < slide.scrollHeight - 1;
-        const canScrollUp = slide.scrollTop > 0;
-        if (event.deltaY > 0 ? canScrollDown : canScrollUp) return;
-      }
+      if (!slide || transitionLocked.current) return;
 
-      const now = Date.now();
-      if (now - lastWheelTime.current < 800) {
-        event.preventDefault();
-        return;
-      }
+      const canScrollDown = slide.scrollHeight > slide.clientHeight
+        && slide.scrollTop + slide.clientHeight < slide.scrollHeight - 1;
+      const canScrollUp = slide.scrollHeight > slide.clientHeight && slide.scrollTop > 0;
+      if (event.deltaY > 0 ? canScrollDown : canScrollUp) return;
 
-      lastWheelTime.current = now;
-      event.preventDefault();
       if (event.deltaY > 0) nextPage();
       else prevPage();
     };
 
-    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('wheel', handleWheel, { passive: true });
     return () => window.removeEventListener('wheel', handleWheel);
   }, [currentPage]);
 
@@ -143,6 +137,7 @@ export default function App() {
       if (deltaY > 0 ? canScrollDown : canScrollUp) return;
     }
 
+    if (transitionLocked.current) return;
     if (deltaY > 0) nextPage();
     else prevPage();
   };
@@ -182,8 +177,6 @@ export default function App() {
     >
       {/* Authentic Rajasthani architectural background: palace arcade arches, traditional mandalas, and jali screen */}
       <RajasthaniBackground />
-
-      {/* First visit begins at the carved haveli entrance. */}
 
       {/* Floating jasmine, gulab rose petals & shimmering antique gold dust with PARALLAX EFFECT */}
       <PetalCanvas 
@@ -242,6 +235,9 @@ export default function App() {
             initial="enter"
             animate="center"
             exit="exit"
+            onAnimationComplete={(definition) => {
+              if (definition === 'center') transitionLocked.current = false;
+            }}
             className="w-full h-full flex flex-col items-center justify-center overflow-hidden"
           >
             {/* Slide 1: Only Initials (with click next slide button) */}
