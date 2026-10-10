@@ -37,8 +37,14 @@
     color: var(--color-text-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overscroll-behavior-y: none;
   }
+}
+
+/* Keep each invitation page on the browser's native wheel and touch scroll path. */
+.slide-scroll-container {
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 /* Custom font utility classes */
@@ -317,12 +323,12 @@ main :is(.rounded-xl.border, .rounded-2xl.border, [class*="rounded-"][class*="bo
   height: 100%;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  filter: brightness(.55) sepia(.18) contrast(1.08);
+  filter: brightness(.62) sepia(.14) contrast(1.08);
   transform-style: preserve-3d;
   backface-visibility: hidden;
   will-change: transform;
   box-shadow: inset 0 0 24px rgba(25, 12, 6, .54);
-  transition: transform var(--door-time) cubic-bezier(.2,.65,.25,1) .12s, filter var(--door-time) ease .12s;
+  transition: transform var(--door-time) cubic-bezier(.2,.65,.25,1) .12s;
 }
 .haveli-door::after {
   content: '';
@@ -343,8 +349,8 @@ main :is(.rounded-xl.border, .rounded-2xl.border, [class*="rounded-"][class*="bo
   background-position: right center;
   border-left: 1px solid #d0a36c;
 }
-.is-opening .haveli-door-left { transform: rotateY(-108deg); filter: brightness(.86) sepia(.1); }
-.is-opening .haveli-door-right { transform: rotateY(108deg); filter: brightness(.86) sepia(.1); }
+.is-opening .haveli-door-left { transform: rotateY(-108deg); }
+.is-opening .haveli-door-right { transform: rotateY(108deg); }
 .haveli-light {
   position: absolute;
   z-index: -1;

@@ -24,6 +24,7 @@ export default function App() {
   const [direction, setDirection] = useState<'forward' | 'backward'>('forward');
   const [petalIntensity, setPetalIntensity] = useState<'gentle' | 'celebratory'>('gentle');
   const touchStartY = useRef<number | null>(null);
+  const lastWheelTime = useRef(0);
   
   // Royal Rajasthani Invitation Sections:
   // 1. First slide only initials
@@ -97,51 +98,55 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentPage]);
 
-  // Touch gesture swipe handling for mobile
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartY.current = e.touches[0].clientY;
-  };
+  // Preserve native scrolling inside a slide; turn the page only at its scroll boundary.
+  useEffect(() => {
+    const handleWheel = (event: WheelEvent) => {
+      if (Math.abs(event.deltaY) < 12) return;
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartY.current === null) return;
-    const touchEndY = e.changedTouches[0].clientY;
-    const diff = touchStartY.current - touchEndY;
-    const scrollableSlide = (e.target as HTMLElement).closest('.slide-scroll-container') as HTMLElement | null;
+      const slide = event.target instanceof Element
+        ? event.target.closest<HTMLElement>('.slide-scroll-container')
+        : null;
+      if (slide && slide.scrollHeight > slide.clientHeight) {
+        const canScrollDown = slide.scrollTop + slide.clientHeight < slide.scrollHeight - 1;
+        const canScrollUp = slide.scrollTop > 0;
+        if (event.deltaY > 0 ? canScrollDown : canScrollUp) return;
+      }
 
-    if (scrollableSlide && scrollableSlide.scrollHeight > scrollableSlide.clientHeight) {
-      const canScrollFurther = diff > 0
-        ? scrollableSlide.scrollTop + scrollableSlide.clientHeight < scrollableSlide.scrollHeight - 1
-        : scrollableSlide.scrollTop > 0;
-      if (canScrollFurther) {
-        touchStartY.current = null;
+      const now = Date.now();
+      if (now - lastWheelTime.current < 800) {
+        event.preventDefault();
         return;
       }
-    }
 
-    // Minimum swipe threshold
-    if (Math.abs(diff) > 48) {
-      if (diff > 0) {
-        nextPage();
-      } else {
-        prevPage();
-      }
-    }
-    touchStartY.current = null;
+      lastWheelTime.current = now;
+      event.preventDefault();
+      if (event.deltaY > 0) nextPage();
+      else prevPage();
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    return () => window.removeEventListener('wheel', handleWheel);
+  }, [currentPage]);
+
+  const handleTouchStart = (event: React.TouchEvent) => {
+    touchStartY.current = event.touches[0]?.clientY ?? null;
   };
 
-  // Wheel handling with debounce
-  const lastWheelTime = useRef<number>(0);
-  const handleWheel = (e: React.WheelEvent) => {
-    const now = Date.now();
-    if (now - lastWheelTime.current < 800) return;
+  const handleTouchEnd = (event: React.TouchEvent) => {
+    if (touchStartY.current === null) return;
+    const deltaY = touchStartY.current - (event.changedTouches[0]?.clientY ?? touchStartY.current);
+    touchStartY.current = null;
+    if (Math.abs(deltaY) < 56) return;
 
-    if (e.deltaY > 30) {
-      lastWheelTime.current = now;
-      nextPage();
-    } else if (e.deltaY < -30) {
-      lastWheelTime.current = now;
-      prevPage();
+    const slide = (event.target as HTMLElement).closest<HTMLElement>('.slide-scroll-container');
+    if (slide && slide.scrollHeight > slide.clientHeight) {
+      const canScrollDown = slide.scrollTop + slide.clientHeight < slide.scrollHeight - 1;
+      const canScrollUp = slide.scrollTop > 0;
+      if (deltaY > 0 ? canScrollDown : canScrollUp) return;
     }
+
+    if (deltaY > 0) nextPage();
+    else prevPage();
   };
 
   // Page turning motion variants (luxurious royal paper feel)
@@ -150,13 +155,11 @@ export default function App() {
       opacity: 0,
       scale: 0.97,
       y: dir === 'forward' ? 24 : -24,
-      filter: 'blur(3px)'
     }),
     center: {
       opacity: 1,
       scale: 1,
       y: 0,
-      filter: 'blur(0px)',
       transition: {
         duration: 0.9,
         ease: [0.22, 1, 0.36, 1] as const
@@ -166,7 +169,6 @@ export default function App() {
       opacity: 0,
       scale: 0.97,
       y: dir === 'forward' ? -24 : 24,
-      filter: 'blur(3px)',
       transition: {
         duration: 0.7,
         ease: [0.22, 1, 0.36, 1] as const
@@ -177,7 +179,6 @@ export default function App() {
   return (
     <div 
       className="relative w-full h-[100dvh] overflow-hidden bg-[#F5EBDD] flex items-center justify-center select-none"
-      onWheel={handleWheel}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -192,7 +193,7 @@ export default function App() {
 
       {/* Floating jasmine, gulab rose petals & shimmering antique gold dust with PARALLAX EFFECT */}
       <PetalCanvas 
-        active={true} 
+        active={entranceDismissed}
         intensity={petalIntensity} 
         page={currentPage} 
         direction={direction} 

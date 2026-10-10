@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { TransitionEvent, useEffect, useRef, useState } from 'react';
 
 type RoyalHaveliEntranceProps = {
   onOpened?: () => void;
@@ -6,19 +6,37 @@ type RoyalHaveliEntranceProps = {
 
 export function RoyalHaveliEntrance({ onOpened }: RoyalHaveliEntranceProps) {
   const [state, setState] = useState<'closed' | 'opening' | 'opened'>('closed');
+  const timers = useRef<number[]>([]);
+  const completed = useRef(false);
+
+  useEffect(() => () => timers.current.forEach(window.clearTimeout), []);
+
+  const handleTransitionEnd = (event: TransitionEvent<HTMLElement>) => {
+    if (event.target !== event.currentTarget || event.propertyName !== 'opacity' || state !== 'opened') return;
+    if (completed.current) return;
+    completed.current = true;
+    timers.current.forEach(window.clearTimeout);
+    onOpened?.();
+  };
 
   const openDoors = () => {
     if (state !== 'closed') return;
     setState('opening');
-    // Match the door transition so the slide is revealed right as it finishes.
-    window.setTimeout(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // The fallback also covers browsers that do not dispatch transitionend.
+    timers.current.push(window.setTimeout(() => {
       setState('opened');
+    }, reducedMotion ? 150 : 1750));
+    timers.current.push(window.setTimeout(() => {
+      if (completed.current) return;
+      completed.current = true;
       onOpened?.();
-    }, 1700);
+    }, reducedMotion ? 800 : 2400));
   };
 
   return (
     <section
+      onTransitionEnd={handleTransitionEnd}
       className={`haveli-entrance ${state !== 'closed' ? 'is-opening' : ''} ${state === 'opened' ? 'is-opened' : ''}`}
       aria-label="Royal haveli entrance"
     >

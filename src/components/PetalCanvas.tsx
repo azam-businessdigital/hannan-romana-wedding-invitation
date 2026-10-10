@@ -32,7 +32,7 @@ export const PetalCanvas: React.FC<{
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animationFrameId: number;
+    let animationFrameId: number | null = null;
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
@@ -42,7 +42,7 @@ export const PetalCanvas: React.FC<{
       height = canvas.height = window.innerHeight;
     };
 
-    window.addEventListener('resize', handleResize);
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     const petalCount = intensity === 'celebratory' ? 48 : 26;
     
@@ -134,7 +134,6 @@ export const PetalCanvas: React.FC<{
       context.arc(x, y, size, 0, Math.PI * 2);
       context.fillStyle = `${color}${opacity})`;
       context.shadowColor = 'rgba(235, 195, 80, 0.6)';
-      context.shadowBlur = 6;
       context.fill();
       context.restore();
     };
@@ -186,14 +185,32 @@ export const PetalCanvas: React.FC<{
         if (p.x < -30) p.x = width + 30;
       }
 
-      animationFrameId = requestAnimationFrame(animate);
+      if (!document.hidden && !prefersReducedMotion.matches) {
+        animationFrameId = requestAnimationFrame(animate);
+      }
     };
 
-    animate();
+    const startAnimation = () => {
+      if (document.hidden || prefersReducedMotion.matches || animationFrameId !== null) return;
+      animationFrameId = requestAnimationFrame(animate);
+    };
+    const stopAnimation = () => {
+      if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+    };
+    const handleVisibilityChange = () => document.hidden ? stopAnimation() : startAnimation();
+    const handleMotionPreferenceChange = () => prefersReducedMotion.matches ? stopAnimation() : startAnimation();
+
+    window.addEventListener('resize', handleResize, { passive: true });
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    prefersReducedMotion.addEventListener('change', handleMotionPreferenceChange);
+    startAnimation();
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      stopAnimation();
       window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      prefersReducedMotion.removeEventListener('change', handleMotionPreferenceChange);
     };
   }, [active, intensity]);
 

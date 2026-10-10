@@ -24,6 +24,7 @@ class LuxuryAudioController {
 
     try {
       this.audio = new Audio(musicUrl);
+      this.audio.preload = 'none';
       this.audio.loop = true;
       this.audio.volume = 0.40; // Soft and elegant
 
