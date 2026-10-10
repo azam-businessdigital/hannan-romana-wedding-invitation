@@ -14,9 +14,11 @@ export const FamilySection: React.FC<FamilySectionProps> = ({ data }) => {
   return (
     <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-start gap-1 p-3 sm:p-4 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-[clamp(108px,17vh,140px)]">
       <img
-        src="/assets/rajasthani-wildlife-border.png"
+        src="/assets/rajasthani-wildlife-border.webp"
         alt=""
         aria-hidden="true"
+        decoding="async"
+        fetchPriority="low"
         className="pointer-events-none absolute bottom-0 left-0 z-0 h-[clamp(88px,14vh,125px)] w-full object-cover object-bottom opacity-90 select-none"
       />
       {/* Subtle Rajasthani jali lattice texture & grain */}

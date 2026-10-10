@@ -17,9 +17,11 @@ export const NikahDetailOnly: React.FC<NikahDetailOnlyProps> = ({ data }) => {
   return (
     <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-center gap-3 p-3.5 sm:p-5 paper-emboss text-[#3A2118] overflow-x-hidden overflow-y-auto slide-scroll-container select-none pb-20">
       <img
-        src="/assets/nikah-ceremony-artwork.png"
+        src="/assets/nikah-ceremony-artwork.webp"
         alt=""
         aria-hidden="true"
+        decoding="async"
+        fetchPriority="low"
         className="absolute inset-0 h-full w-full object-cover object-center opacity-45 pointer-events-none"
       />
       {/* Subtle Rajasthani jali lattice texture & grain */}

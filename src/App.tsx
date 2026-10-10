@@ -105,18 +105,25 @@ export default function App() {
       const slide = event.target instanceof Element
         ? event.target.closest<HTMLElement>('.slide-scroll-container')
         : null;
-      if (!slide || transitionLocked.current) return;
+      if (!slide) return;
+      if (transitionLocked.current) {
+        event.preventDefault();
+        return;
+      }
 
       const canScrollDown = slide.scrollHeight > slide.clientHeight
         && slide.scrollTop + slide.clientHeight < slide.scrollHeight - 1;
       const canScrollUp = slide.scrollHeight > slide.clientHeight && slide.scrollTop > 0;
       if (event.deltaY > 0 ? canScrollDown : canScrollUp) return;
 
+      // Cancel only the boundary input that turns the page, so it cannot scroll
+      // the incoming slide while React is swapping the animated content.
+      event.preventDefault();
       if (event.deltaY > 0) nextPage();
       else prevPage();
     };
 
-    window.addEventListener('wheel', handleWheel, { passive: true });
+    window.addEventListener('wheel', handleWheel, { passive: false });
     return () => window.removeEventListener('wheel', handleWheel);
   }, [currentPage]);
 
@@ -221,9 +228,11 @@ export default function App() {
 
         {/* Shared wildlife border anchored to the foot of every slide. */}
         <img
-          src="/assets/rajasthani-wildlife-border.png"
+          src="/assets/rajasthani-wildlife-border.webp"
           alt=""
           aria-hidden="true"
+          decoding="async"
+          fetchPriority="low"
           className={`pointer-events-none absolute bottom-0 left-0 z-20 h-[clamp(72px,14vh,125px)] w-full object-cover object-bottom opacity-90 select-none ${currentPage === 6 ? 'hidden' : ''}`}
         />
 
