@@ -254,3 +254,33 @@ main :is(.rounded-xl.border, .rounded-2xl.border, [class*="rounded-"][class*="bo
   filter: drop-shadow(0 0 8px rgba(255, 185, 70, 0.9));
   animation: candleFlicker 2.2s infinite ease-in-out;
 }
+
+/* Keep the palace mandalas turning on the compositor, outside Motion's JS frame loop. */
+@keyframes rajasthaniMandalaClockwise {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rajasthaniMandalaCounterclockwise {
+  to { transform: rotate(-360deg); }
+}
+
+.rajasthani-mandala-orbit {
+  animation-duration: 180s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.rajasthani-mandala-orbit-clockwise {
+  animation-name: rajasthaniMandalaClockwise;
+}
+
+.rajasthani-mandala-orbit-counterclockwise {
+  animation-name: rajasthaniMandalaCounterclockwise;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rajasthani-mandala-orbit {
+    animation-play-state: paused;
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Share2, Check } from 'lucide-react';
 import { InvitationConfig } from '../types';
 
@@ -14,6 +14,11 @@ export const ShareButton: React.FC<ShareButtonProps> = ({
   variant = 'floating'
 }) => {
   const [copied, setCopied] = useState(false);
+  const copiedResetTimer = useRef<number | null>(null);
+
+  useEffect(() => () => {
+    if (copiedResetTimer.current !== null) window.clearTimeout(copiedResetTimer.current);
+  }, []);
 
   const handleShare = async () => {
     const shareTitle = `Wedding Reception Invitation: ${data.groom} & ${data.bride}`;
@@ -44,7 +49,11 @@ export const ShareButton: React.FC<ShareButtonProps> = ({
       try {
         await navigator.clipboard.writeText(`${shareText}\n${shareUrl}`);
         setCopied(true);
-        setTimeout(() => setCopied(false), 2500);
+        if (copiedResetTimer.current !== null) window.clearTimeout(copiedResetTimer.current);
+        copiedResetTimer.current = window.setTimeout(() => {
+          setCopied(false);
+          copiedResetTimer.current = null;
+        }, 2500);
       } catch {
         // Clipboard error
       }

@@ -21,8 +21,20 @@ export default function App() {
   const [hasStarted, setHasStarted] = useState(false);
   const [direction, setDirection] = useState<'forward' | 'backward'>('forward');
   const [petalIntensity, setPetalIntensity] = useState<'gentle' | 'celebratory'>('gentle');
-  const touchStartY = useRef<number | null>(null);
+  const touchStart = useRef<{
+    y: number;
+    x: number;
+    slide: HTMLElement | null;
+    scrollables: Array<{ element: HTMLElement; scrollTop: number }>;
+    target: EventTarget | null;
+  } | null>(null);
   const transitionLocked = useRef(false);
+  const transitionCooldownUntil = useRef(0);
+  const wheelIdleDelay = 480;
+  const intensityResetTimer = useRef<number | null>(null);
+  const wheelIdleTimer = useRef<number | null>(null);
+  const wheelTurnActive = useRef(false);
+  const navigationRef = useRef({ currentPage, totalPages: 9, goToPage: (_page: number) => {}, nextPage: () => {}, prevPage: () => {} });
   
   // Royal Rajasthani Invitation Sections:
   // 1. First slide only initials
@@ -71,82 +83,136 @@ export default function App() {
     }
   };
 
+  navigationRef.current = { currentPage, totalPages, goToPage, nextPage, prevPage };
+
+  useEffect(() => () => {
+    transitionLocked.current = false;
+    if (intensityResetTimer.current !== null) window.clearTimeout(intensityResetTimer.current);
+    if (wheelIdleTimer.current !== null) window.clearTimeout(wheelIdleTimer.current);
+  }, []);
+
   // User taps "CLICK FOR NEXT SLIDE" on cover
   const handleProceedFromCover = () => {
     if (!hasStarted) {
       setHasStarted(true);
     }
     setPetalIntensity('celebratory');
-    setTimeout(() => setPetalIntensity('gentle'), 4000);
+    if (intensityResetTimer.current !== null) window.clearTimeout(intensityResetTimer.current);
+    intensityResetTimer.current = window.setTimeout(() => {
+      setPetalIntensity('gentle');
+      intensityResetTimer.current = null;
+    }, 4000);
     goToPage(1);
   };
 
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
-        e.preventDefault();
-        nextPage();
-      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
-        e.preventDefault();
-        prevPage();
-      }
+      const target = e.target;
+      if (target instanceof HTMLElement && (target.isContentEditable || target.matches('input, textarea, select, button, a, [role="button"]'))) return;
+      const insideSlideScroller = target instanceof Element && target.closest('.slide-scroll-container');
+      const isSpace = e.code === 'Space' || e.key === ' ';
+      if (isSpace && insideSlideScroller) return;
+      const down = ['ArrowDown', 'ArrowRight', 'PageDown'].includes(e.key) || isSpace;
+      const up = ['ArrowUp', 'ArrowLeft', 'PageUp'].includes(e.key);
+      if (!down && !up) return;
+      const { currentPage: page, totalPages: count, nextPage: next, prevPage: prev } = navigationRef.current;
+      if (transitionLocked.current || (down && page >= count - 1) || (up && page <= 0)) return;
+      e.preventDefault();
+      if (down) next(); else prev();
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentPage]);
+  }, []);
 
   // Let native scrolling handle slide content; use wheel input for paging only at boundaries.
   useEffect(() => {
     const handleWheel = (event: WheelEvent) => {
-      if (Math.abs(event.deltaY) < 12) return;
+      if (Math.abs(event.deltaY) < 20 || !Number.isFinite(event.deltaY)) return;
 
       const slide = event.target instanceof Element
         ? event.target.closest<HTMLElement>('.slide-scroll-container')
         : null;
       if (!slide) return;
-      if (transitionLocked.current) {
-        event.preventDefault();
+      // Never cancel a wheel event because an animation is in progress. Native
+      // scrolling remains available on the current slide during page turns.
+      if (wheelTurnActive.current) {
+        if (wheelIdleTimer.current !== null) window.clearTimeout(wheelIdleTimer.current);
+        wheelIdleTimer.current = window.setTimeout(() => {
+          wheelTurnActive.current = false;
+          wheelIdleTimer.current = null;
+        }, wheelIdleDelay);
         return;
       }
+      if (transitionLocked.current || Date.now() < transitionCooldownUntil.current) return;
 
-      const canScrollDown = slide.scrollHeight > slide.clientHeight
-        && slide.scrollTop + slide.clientHeight < slide.scrollHeight - 1;
-      const canScrollUp = slide.scrollHeight > slide.clientHeight && slide.scrollTop > 0;
+      // A nested scrollable (when present) gets first refusal, then the slide.
+      let canScrollDown = false;
+      let canScrollUp = false;
+      for (let node: Element | null = event.target instanceof Element ? event.target : slide; node; node = node.parentElement) {
+        if (node instanceof HTMLElement && node !== slide && node.scrollHeight > node.clientHeight) {
+          canScrollDown ||= node.scrollTop + node.clientHeight < node.scrollHeight - 1;
+          canScrollUp ||= node.scrollTop > 0;
+        }
+        if (node === slide) break;
+      }
+      canScrollDown ||= slide.scrollHeight > slide.clientHeight && slide.scrollTop + slide.clientHeight < slide.scrollHeight - 1;
+      canScrollUp ||= slide.scrollHeight > slide.clientHeight && slide.scrollTop > 0;
       if (event.deltaY > 0 ? canScrollDown : canScrollUp) return;
-
-      // Cancel only the boundary input that turns the page, so it cannot scroll
-      // the incoming slide while React is swapping the animated content.
+      // Consume only the first deliberate boundary gesture in a wheel burst.
       event.preventDefault();
-      if (event.deltaY > 0) nextPage();
-      else prevPage();
+      wheelTurnActive.current = true;
+      if (wheelIdleTimer.current !== null) window.clearTimeout(wheelIdleTimer.current);
+      const endWheelGesture = () => {
+        wheelTurnActive.current = false;
+        wheelIdleTimer.current = null;
+      };
+      wheelIdleTimer.current = window.setTimeout(endWheelGesture, wheelIdleDelay);
+      if (event.deltaY > 0) navigationRef.current.nextPage();
+      else navigationRef.current.prevPage();
     };
 
     window.addEventListener('wheel', handleWheel, { passive: false });
     return () => window.removeEventListener('wheel', handleWheel);
-  }, [currentPage]);
+  }, []);
 
   const handleTouchStart = (event: React.TouchEvent) => {
-    touchStartY.current = event.touches[0]?.clientY ?? null;
+    const touch = event.touches[0];
+    if (!touch) return;
+    const target = event.target;
+    const slide = target instanceof Element ? target.closest<HTMLElement>('.slide-scroll-container') : null;
+    const scrollables: Array<{ element: HTMLElement; scrollTop: number }> = [];
+    for (let node: Element | null = target instanceof Element ? target : null; node; node = node.parentElement) {
+      if (node instanceof HTMLElement && node.scrollHeight > node.clientHeight) {
+        const overflowY = window.getComputedStyle(node).overflowY;
+        if (overflowY === 'auto' || overflowY === 'scroll' || overflowY === 'overlay') {
+          scrollables.push({ element: node, scrollTop: node.scrollTop });
+        }
+      }
+      if (node === slide) break;
+    }
+    touchStart.current = { y: touch.clientY, x: touch.clientX, slide, scrollables, target };
   };
 
   const handleTouchEnd = (event: React.TouchEvent) => {
-    if (touchStartY.current === null) return;
-    const deltaY = touchStartY.current - (event.changedTouches[0]?.clientY ?? touchStartY.current);
-    touchStartY.current = null;
-    if (Math.abs(deltaY) < 56) return;
-
-    const slide = (event.target as HTMLElement).closest<HTMLElement>('.slide-scroll-container');
-    if (slide && slide.scrollHeight > slide.clientHeight) {
-      const canScrollDown = slide.scrollTop + slide.clientHeight < slide.scrollHeight - 1;
-      const canScrollUp = slide.scrollTop > 0;
-      if (deltaY > 0 ? canScrollDown : canScrollUp) return;
-    }
-
-    if (transitionLocked.current) return;
-    if (deltaY > 0) nextPage();
-    else prevPage();
+    const start = touchStart.current;
+    const touch = event.changedTouches[0];
+    touchStart.current = null;
+    if (!start || !touch || transitionLocked.current) return;
+    const deltaY = start.y - touch.clientY;
+    const deltaX = start.x - touch.clientX;
+    if (Math.abs(deltaY) < 64 || Math.abs(deltaY) < Math.abs(deltaX) * 1.35) return;
+    const target = start.target;
+    if (target instanceof HTMLElement && target.closest('button, a, input, textarea, select, [role="button"]')) return;
+    if (start.scrollables.some(({ element, scrollTop }) => Math.abs(element.scrollTop - scrollTop) > 2)) return;
+    const anotherScrollerCanConsume = start.scrollables.some(({ element }) => deltaY > 0
+      ? element.scrollTop + element.clientHeight < element.scrollHeight - 1
+      : element.scrollTop > 0);
+    if (anotherScrollerCanConsume) return;
+    if (Date.now() < transitionCooldownUntil.current) return;
+    if (deltaY > 0) navigationRef.current.nextPage();
+    else navigationRef.current.prevPage();
   };
 
   // Page turning motion variants (luxurious royal paper feel)
@@ -161,7 +227,7 @@ export default function App() {
       scale: 1,
       y: 0,
       transition: {
-        duration: 0.9,
+        duration: 0.38,
         ease: [0.22, 1, 0.36, 1] as const
       }
     },
@@ -170,7 +236,7 @@ export default function App() {
       scale: 0.97,
       y: dir === 'forward' ? -24 : 24,
       transition: {
-        duration: 0.7,
+        duration: 0.25,
         ease: [0.22, 1, 0.36, 1] as const
       }
     })
@@ -245,7 +311,10 @@ export default function App() {
             animate="center"
             exit="exit"
             onAnimationComplete={(definition) => {
-              if (definition === 'center') transitionLocked.current = false;
+              if (definition === 'center') {
+                transitionLocked.current = false;
+                transitionCooldownUntil.current = Date.now() + 300;
+              }
             }}
             className="w-full h-full flex flex-col items-center justify-center overflow-hidden"
           >

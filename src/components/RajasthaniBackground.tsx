@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'motion/react';
 
 /**
  * RajasthaniBackground
@@ -237,24 +236,16 @@ export const RajasthaniBackground: React.FC = React.memo(() => {
 
       {/* 4. Left Flank: Traditional Royal Rajasthani Mandala (Desktop / Tablet showcase) */}
       <div className="absolute top-1/2 -left-28 sm:-left-16 lg:left-4 -translate-y-1/2 opacity-25 lg:opacity-35 pointer-events-none">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 180, repeat: Infinity, ease: 'linear' }}
-          className="w-80 h-80 sm:w-96 sm:h-96 lg:w-[440px] lg:h-[440px]"
-        >
+        <div className="rajasthani-mandala-orbit rajasthani-mandala-orbit-clockwise w-80 h-80 sm:w-96 sm:h-96 lg:w-[440px] lg:h-[440px]">
           <RajasthaniMandala className="w-full h-full text-[#B9786D]" />
-        </motion.div>
+        </div>
       </div>
 
       {/* 5. Right Flank: Symmetrical Traditional Royal Rajasthani Mandala */}
       <div className="absolute top-1/2 -right-28 sm:-right-16 lg:right-4 -translate-y-1/2 opacity-25 lg:opacity-35 pointer-events-none">
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 180, repeat: Infinity, ease: 'linear' }}
-          className="w-80 h-80 sm:w-96 sm:h-96 lg:w-[440px] lg:h-[440px]"
-        >
+        <div className="rajasthani-mandala-orbit rajasthani-mandala-orbit-counterclockwise w-80 h-80 sm:w-96 sm:h-96 lg:w-[440px] lg:h-[440px]">
           <RajasthaniMandala className="w-full h-full text-[#B9786D]" />
-        </motion.div>
+        </div>
       </div>
 
       {/* 6. Subtle Center Watermark Mandala (Behind central card on mobile) */}

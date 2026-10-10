@@ -19,6 +19,8 @@ export const PetalCanvas: React.FC<{
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const pageRef = useRef(page);
   const directionRef = useRef(direction);
+  const intensityRef = useRef(intensity);
+  intensityRef.current = intensity;
 
   useEffect(() => {
     pageRef.current = page;
@@ -33,13 +35,15 @@ export const PetalCanvas: React.FC<{
     if (!ctx) return;
 
     let animationFrameId: number | null = null;
+    const lowPowerDevice = (navigator.hardwareConcurrency || 8) <= 4 ||
+      ('connection' in navigator && Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData));
     const pixelRatio = Math.min(window.devicePixelRatio || 1, 1);
     let width = window.innerWidth;
     let height = window.innerHeight;
 
     const resizeCanvas = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
+      width = Math.max(0, window.innerWidth);
+      height = Math.max(0, window.innerHeight);
       canvas.width = Math.round(width * pixelRatio);
       canvas.height = Math.round(height * pixelRatio);
       ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
@@ -49,11 +53,14 @@ export const PetalCanvas: React.FC<{
 
     const handleResize = () => {
       resizeCanvas();
+      if (width === 0 || height === 0) stopAnimation();
+      else if (prefersReducedMotion.matches) drawFrame();
+      else startAnimation();
     };
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    const petalCount = intensity === 'celebratory' ? 48 : 26;
+    const maxParticleCount = lowPowerDevice ? 36 : 48;
     
     // Parallax tracking: smoothly lerps towards page-driven target offset
     let currentParallaxY = pageRef.current * 40;
@@ -92,7 +99,7 @@ export const PetalCanvas: React.FC<{
       'rgba(235, 170, 155, '  // Warm Rose Sandstone Petal
     ];
 
-    for (let i = 0; i < petalCount; i++) {
+    for (let i = 0; i < maxParticleCount; i++) {
       const isGold = Math.random() < 0.35;
       const depth = Math.random() * 1.4 + 0.3; // Depth factor for parallax
       particles.push({
@@ -138,16 +145,14 @@ export const PetalCanvas: React.FC<{
       color: string,
       opacity: number
     ) => {
-      context.save();
       context.beginPath();
       context.arc(x, y, size, 0, Math.PI * 2);
       context.fillStyle = `${color}${opacity})`;
-      context.shadowColor = 'transparent';
       context.fill();
-      context.restore();
     };
 
-    const animate = () => {
+    const drawFrame = () => {
+      if (width <= 0 || height <= 0) return;
       ctx.clearRect(0, 0, width, height);
 
       // Check if page transitioned to trigger dynamic parallax momentum
@@ -162,7 +167,10 @@ export const PetalCanvas: React.FC<{
       currentParallaxY += (targetParallaxY - currentParallaxY) * 0.06;
       transitionImpulseY *= 0.92;
 
-      for (let i = 0; i < particles.length; i++) {
+      const particleCount = intensityRef.current === 'celebratory'
+        ? particles.length
+        : Math.min(particles.length, lowPowerDevice ? 20 : 26);
+      for (let i = 0; i < particleCount; i++) {
         const p = particles[i];
         p.oscillation += p.oscillationSpeed;
         p.x += p.speedX + Math.sin(p.oscillation) * 0.6;
@@ -194,13 +202,18 @@ export const PetalCanvas: React.FC<{
         if (p.x < -30) p.x = width + 30;
       }
 
-      if (!document.hidden && !prefersReducedMotion.matches) {
+    };
+
+    const animate = () => {
+      animationFrameId = null;
+      drawFrame();
+      if (width > 0 && height > 0 && !document.hidden && !prefersReducedMotion.matches) {
         animationFrameId = requestAnimationFrame(animate);
       }
     };
 
     const startAnimation = () => {
-      if (document.hidden || prefersReducedMotion.matches || animationFrameId !== null) return;
+      if (document.hidden || prefersReducedMotion.matches || width === 0 || height === 0 || animationFrameId !== null) return;
       animationFrameId = requestAnimationFrame(animate);
     };
     const stopAnimation = () => {
@@ -208,11 +221,17 @@ export const PetalCanvas: React.FC<{
       animationFrameId = null;
     };
     const handleVisibilityChange = () => document.hidden ? stopAnimation() : startAnimation();
-    const handleMotionPreferenceChange = () => prefersReducedMotion.matches ? stopAnimation() : startAnimation();
+    const handleMotionPreferenceChange = () => {
+      if (prefersReducedMotion.matches) {
+        stopAnimation();
+        drawFrame();
+      } else startAnimation();
+    };
     window.addEventListener('resize', handleResize, { passive: true });
     document.addEventListener('visibilitychange', handleVisibilityChange);
     prefersReducedMotion.addEventListener('change', handleMotionPreferenceChange);
-    startAnimation();
+    if (prefersReducedMotion.matches) drawFrame();
+    else startAnimation();
 
     return () => {
       stopAnimation();
@@ -220,7 +239,7 @@ export const PetalCanvas: React.FC<{
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       prefersReducedMotion.removeEventListener('change', handleMotionPreferenceChange);
     };
-  }, [active, intensity]);
+  }, [active]);
 
   return (
     <canvas
